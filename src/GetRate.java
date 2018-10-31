@@ -14,7 +14,7 @@ public class GetRate {
         if (conn.getResponseCode() != 200) {
             throw new RuntimeException("Connect Error!");
         } else {
-            System.out.println(conn.getContentType());
+//            System.out.println(conn.getContentType());
             InputStream in = conn.getInputStream();
             byte[] data = in.readAllBytes();
             String jsonString = new String(data, "UTF-8");

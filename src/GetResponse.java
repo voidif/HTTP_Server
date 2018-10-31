@@ -23,7 +23,7 @@ public class GetResponse {
                 i = -1;
             }
             String head = new String(buffer);
-            System.out.println(head);
+//            System.out.println(head);
 
             //response
             String res = "HTTP/1.1 200 OK" + "\n\n" + GetRate.getUSD_CNY().toString();
