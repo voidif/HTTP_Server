@@ -32,6 +32,7 @@ public class HTTP_Server {
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+            
         }
 
     }
