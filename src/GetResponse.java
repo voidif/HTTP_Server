@@ -2,7 +2,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+
 public class GetResponse {
+
+
     private InputStream request;
     private OutputStream response;
 
