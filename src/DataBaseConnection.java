@@ -65,22 +65,26 @@ public class DataBaseConnection {
 
                 //old data, query for newest data
                 java.sql.Date sDate = new java.sql.Date(new java.util.Date().getTime());
-                if(!result.next()) {
+                if(result == null || !result.next()) {
+                    System.out.println("no value! retrieve from web");
                     rate = GetRate.getUSD_CNY();
                     sql = String.format("INSERT INTO usd_cny VALUES(%d, '%tF', %f);", id, sDate, rate);
                     statement.executeUpdate(sql);
-                    System.out.println("no value! retrieve from web");
+
                 } else if(result.getDate("date").getDate() != new Date().getDate()){
+                    System.out.println("value out of date! get new one from web");
                     rate = GetRate.getUSD_CNY();
                     sql = String.format("UPDATE usd_cny SET rate = %f, date = '%tF' WHERE id = %d",
                             rate, sDate, id);
-                    System.out.println("value out of date! get new one from web");
+
                 } else {
-                    rate = result.getFloat("rate");
                     System.out.println("value is good!");
+                    rate = result.getFloat("rate");
+
                 }
             }
         } catch (Exception e){
+            System.out.println("Error!!");
             e.printStackTrace();
         }
         return rate;
