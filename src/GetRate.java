@@ -18,7 +18,6 @@ public class GetRate {
             InputStream in = conn.getInputStream();
             byte[] data = in.readAllBytes();
             String jsonString = new String(data, "UTF-8");
-            System.out.println(jsonString);
             JSONObject jObject1 = new JSONObject(jsonString);
             JSONObject jsonObject2 = jObject1.getJSONObject("USD_CNY");
             float value = jsonObject2.getFloat("val");

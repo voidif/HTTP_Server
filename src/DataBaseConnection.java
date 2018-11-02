@@ -36,6 +36,7 @@ public class DataBaseConnection {
             //STEP 2: Open a connection
             System.out.println("Connecting to database...");
             connection = DriverManager.getConnection(DB_URL,USER,PASS);
+            System.out.println(connection.getAutoCommit());
 
             //STEP 3: Execute a query
             System.out.println("Creating statement...");
