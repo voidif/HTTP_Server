@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -56,13 +58,27 @@ public class DataBaseConnection {
                 Calendar calendar = Calendar.getInstance();
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minute = calendar.get(Calendar.MINUTE);
-                int index = hour * 6 + minute % 10;
+                int id = hour * 6 + minute / 10;
 
-                String sql = "SELECT value FROM usd_cny WHERE index == " + index + ";";
+                String sql = String.format("SELECT * FROM usd_cny WHERE id = %d;", id);
                 ResultSet result = statement.executeQuery(sql);
-                if(!result.next() || result.getDate("date").before(new Date()));
-                //STEP 4: Display
 
+                //old data, query for newest data
+                java.sql.Date sDate = new java.sql.Date(new java.util.Date().getTime());
+                if(!result.next()) {
+                    rate = GetRate.getUSD_CNY();
+                    sql = String.format("INSERT INTO usd_cny VALUES(%d, '%tF', %f);", id, sDate, rate);
+                    statement.executeUpdate(sql);
+                    System.out.println("no value! retrieve from web");
+                } else if(result.getDate("date").getDate() != new Date().getDate()){
+                    rate = GetRate.getUSD_CNY();
+                    sql = String.format("UPDATE usd_cny SET rate = %f, date = '%tF' WHERE id = %d",
+                            rate, sDate, id);
+                    System.out.println("value out of date! get new one from web");
+                } else {
+                    rate = result.getFloat("rate");
+                    System.out.println("value is good!");
+                }
             }
         } catch (Exception e){
             e.printStackTrace();

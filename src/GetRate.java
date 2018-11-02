@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GetRate {
-    public static JSONObject getUSD_CNY() throws Exception{
+    public static float getUSD_CNY() throws Exception{
         URL url = new URL("http://free.currencyconverterapi.com/api/v5/convert?q=USD_CNY&compact=y");
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setConnectTimeout(5000);
@@ -20,11 +20,10 @@ public class GetRate {
             String jsonString = new String(data, "UTF-8");
             System.out.println(jsonString);
             JSONObject jObject1 = new JSONObject(jsonString);
-            return jObject1;
-//            JSONObject jsonObject2 = jObject1.getJSONObject("USD_CNY");
-//            float value = jsonObject2.getFloat("val");
+            JSONObject jsonObject2 = jObject1.getJSONObject("USD_CNY");
+            float value = jsonObject2.getFloat("val");
 //            System.out.println(value);
-//            return value;
+            return value;
         }
 
     }

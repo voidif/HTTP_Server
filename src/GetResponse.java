@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -28,8 +30,12 @@ public class GetResponse {
             String head = new String(buffer);
 //            System.out.println(head);
 
+            //get rate from database
+            float rate = DataBaseConnection.getInstance().getValue("USD_CNY");
+            JSONObject rateJson = new JSONObject();
+            rateJson.put("USD_CNY", rate);
             //response
-            String res = "HTTP/1.1 200 OK" + "\n\n" + GetRate.getUSD_CNY().toString();
+            String res = "HTTP/1.1 200 OK" + "\n\n" + rateJson.toString();
 
             response.write(res.getBytes());
             response.close();
