@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Calendar;
+import java.util.Date;
 
 //Singleton
 public class DataBaseConnection {
@@ -45,17 +46,27 @@ public class DataBaseConnection {
 
     //get rate value
     public static float getValue(String keyword){
-        if(keyword.equals("USD_CNY")){
-            String sqldatabase = "USE rate";
-            statement.executeQuery(sqldatabase);
-            String sql = "SELECT value FROM usd_cny ORDER BY DATE DESC LIMIT 1;";
-//            statement.executeQuery(sql);
-//            sql = "SELECT * FROM suppliers;";
-            ResultSet result = statement.executeQuery(sql);
-            //STEP 4: Display
-            while(result.next()){
-                System.out.println(result.getInt("sno") + " " + result.getString("sname"));
+        float rate = 0.0f;
+        try{
+            if(keyword.equals("USD_CNY")) {
+                String sqldatabase = "USE rate";
+                statement.executeQuery(sqldatabase);
+
+                //get current time index
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+                int index = hour * 6 + minute % 10;
+
+                String sql = "SELECT value FROM usd_cny WHERE index == " + index + ";";
+                ResultSet result = statement.executeQuery(sql);
+                if(!result.next() || result.getDate("date").before(new Date()));
+                //STEP 4: Display
+
             }
+        } catch (Exception e){
+            e.printStackTrace();
         }
+        return rate;
     }
 }
