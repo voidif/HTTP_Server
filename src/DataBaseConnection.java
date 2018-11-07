@@ -64,20 +64,21 @@ public class DataBaseConnection {
                 String sql = String.format("SELECT * FROM usd_cny WHERE id = %d;", id);
                 ResultSet result = statement.executeQuery(sql);
 
-                //old data, query for newest data
+
                 java.sql.Date sDate = new java.sql.Date(new java.util.Date().getTime());
+                //no data, retrieve from internet
                 if(result == null || !result.next()) {
                     System.out.println("no value! retrieve from web");
                     rate = GetRate.getUSD_CNY();
                     sql = String.format("INSERT INTO usd_cny VALUES(%d, '%tF', %f);", id, sDate, rate);
                     statement.executeUpdate(sql);
-
+                //old data, query for newest data
                 } else if(result.getDate("date").getDate() != new Date().getDate()){
                     System.out.println("value out of date! get new one from web");
                     rate = GetRate.getUSD_CNY();
                     sql = String.format("UPDATE usd_cny SET rate = %f, date = '%tF' WHERE id = %d",
                             rate, sDate, id);
-
+                //good data
                 } else {
                     System.out.println("value is good!");
                     rate = result.getFloat("rate");
