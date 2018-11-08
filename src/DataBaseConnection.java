@@ -78,6 +78,7 @@ public class DataBaseConnection {
                     rate = GetRate.getUSD_CNY();
                     sql = String.format("UPDATE usd_cny SET rate = %f, date = '%tF' WHERE id = %d",
                             rate, sDate, id);
+                    statement.executeUpdate(sql);
                 //good data
                 } else {
                     System.out.println("value is good!");
