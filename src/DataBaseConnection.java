@@ -7,52 +7,41 @@ import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
 
-//Singleton
+/**
+ * The rate database storage all days information every 10 minutes.
+ * The index of every 10 minute from 12:00AM as 0 to 11:59PM as 6 * 24 - 1
+ */
 public class DataBaseConnection {
-    //the singleton
-    private static DataBaseConnection instance = null;
-    //private construct function
-    private DataBaseConnection(){}
 
-    //Get unique singleton
-    public static synchronized  DataBaseConnection getInstance(){
-        if (instance == null) {
-            instance = new DataBaseConnection();
-            instance.init();
-        }
-        return instance;
+//    private static String DB_URL = "jdbc:mysql://localhost/";
+//    private static String USER = "root";
+//    private static String PASS = "w5684766";
+//    private static Connection connection = null;
+//    private static Statement statement = null;
+    private DatabaseConnectionPool pool = null;
+
+    /**
+     * Initialize database setting for a specific thread
+     */
+    void DataBaseConnection (){
+        pool = DatabaseConnectionPool.getInstance();
+        pool.init();
     }
 
-    private static String DB_URL = "jdbc:mysql://localhost/";
-    private static String USER = "root";
-    private static String PASS = "w5684766";
-    private static Connection connection = null;
-    private static Statement statement = null;
-
-    private static void init(){
-        try{
-            //STEP 1: Register the driver
-            Class.forName("com.mysql.jdbc.Driver");
-            //STEP 2: Open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL,USER,PASS);
-            System.out.println(connection.getAutoCommit());
-
-            //STEP 3: Execute a query
-            System.out.println("Creating statement...");
-            statement = connection.createStatement();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    //get rate value
-    public static float getValue(String keyword){
+    /**
+     * Get currency exchange rate by keyword
+     * @param keyword current supported keyword: USD_CNY
+     * @return currency exchange rate
+     */
+    public float getRate(String keyword){
         float rate = 0.0f;
+
         try{
+            Connection connection = pool.getConnection();
+            Statement statement = connection.createStatement();
+
             if(keyword.equals("USD_CNY")) {
-                String sqldatabase = "USE rate";
+                String sqldatabase = "USE rate;";
                 statement.executeQuery(sqldatabase);
 
                 //get current time index
@@ -89,7 +78,12 @@ public class DataBaseConnection {
         } catch (Exception e){
             System.out.println("Error!!");
             e.printStackTrace();
+
         }
         return rate;
+    }
+
+    private synchronized void updateRate(){
+
     }
 }
