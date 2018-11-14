@@ -8,14 +8,8 @@ import java.util.ArrayList;
  * A Database Connection pool used to store all connections.
  */
 public class DatabaseConnectionPool {
-    private static DatabaseConnectionPool connectionPool = null;
-    public static synchronized DatabaseConnectionPool getInstance(){
-        if (connectionPool == null){
-            connectionPool = new DatabaseConnectionPool();
-        }
-        return connectionPool;
-    }
 
+    private static DatabaseConnectionPool connectionPool = null;
     private String DB_URL = "jdbc:mysql://localhost/rate";
     private String USER = "root";
     private String PASSWORD = "w5684766";
@@ -30,11 +24,40 @@ public class DatabaseConnectionPool {
     private int MAX_CAPACITY = 50;
     private ArrayList<pooledConnection> pool = null;
 
-    public void init(){
-        //create connections
-        if(pool == null){
-            createConnectionPool();
+    /**
+     * Singleton mode
+     * @return Singleton instance
+     */
+    public static synchronized DatabaseConnectionPool getInstance(){
+        if (connectionPool == null){
+            connectionPool = new DatabaseConnectionPool();
         }
+        return connectionPool;
+    }
+
+
+    /**
+     * initialize parameters.
+     */
+    public void init(){
+        Connection connection = null;
+        try{
+            //load driver create connections
+            Class.forName("com.mysql.jdbc.Driver");
+            if(pool == null){createConnectionPool();}
+            //try to create test table
+            connection = getConnection();
+            String SQL = String.format("CREATE TABLE %s(\n" +
+                    "id int NOT NULL,\n" +
+                    "PRIMARY KEY(id)\n" +
+                    ");", TEST_TABLE);
+            connection.createStatement().executeUpdate(SQL);
+        } catch (ClassNotFoundException e){
+            System.out.println("No JDBC Drive Found!!");
+        } catch (SQLException e){
+            System.out.println("SQL Error!(From pool's init) " + e.getMessage());
+        }
+        releaseConnection(connection);
     }
 
     /**
@@ -86,6 +109,9 @@ public class DatabaseConnectionPool {
      * @param con the connection will be released
      */
     public void releaseConnection(Connection con){
+        if(con == null){
+            return;
+        }
         for(pooledConnection tmp : pool){
             if(tmp.getConnection().equals(con)){
                 tmp.setBusy(false);

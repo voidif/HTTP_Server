@@ -6,6 +6,7 @@ import java.net.Socket;
 
 public class HTTP_Server {
     public static void main(String[] args){
+        init();
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(80);
@@ -35,7 +36,11 @@ public class HTTP_Server {
         }
 
     }
-    public void init(){
-
+    public static void init(){
+        //Initialize database connection pool
+        DatabaseConnectionPool pool = DatabaseConnectionPool.getInstance();
+        pool.init();
+        //Initialize database connection
+        DataBaseConnection.init();
     }
 }

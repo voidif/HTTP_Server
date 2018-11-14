@@ -1,13 +1,11 @@
 import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * This class controls all database related activities.
  * The rate database storage all days information every 10 minutes.
  * The index of every 10 minute from 12:00AM as 0 to 11:59PM as 6 * 24 - 1
  */
@@ -18,14 +16,13 @@ public class DataBaseConnection {
 //    private static String PASS = "w5684766";
 //    private static Connection connection = null;
 //    private static Statement statement = null;
-    private DatabaseConnectionPool pool = null;
+    private static DatabaseConnectionPool pool = null;
 
     /**
      * Initialize database setting for a specific thread
      */
-    void DataBaseConnection (){
+    public static void init (){
         pool = DatabaseConnectionPool.getInstance();
-        pool.init();
     }
 
     /**
@@ -33,16 +30,16 @@ public class DataBaseConnection {
      * @param keyword current supported keyword: USD_CNY
      * @return currency exchange rate
      */
-    public float getRate(String keyword){
+    public static float getRate(String keyword){
         float rate = 0.0f;
-
+        Connection connection = null;
         try{
-            Connection connection = pool.getConnection();
+            connection = pool.getConnection();
             Statement statement = connection.createStatement();
 
             if(keyword.equals("USD_CNY")) {
-                String sqldatabase = "USE rate;";
-                statement.executeQuery(sqldatabase);
+//                String sqldatabase = "USE rate;";
+//                statement.executeQuery(sqldatabase);
 
                 //get current time index
                 Calendar calendar = Calendar.getInstance();
@@ -50,40 +47,54 @@ public class DataBaseConnection {
                 int minute = calendar.get(Calendar.MINUTE);
                 int id = hour * 6 + minute / 10;
 
-                String sql = String.format("SELECT * FROM usd_cny WHERE id = %d;", id);
-                ResultSet result = statement.executeQuery(sql);
-
+                String querySQL = String.format("SELECT * FROM usd_cny WHERE id = %d;", id);
+                ResultSet result = statement.executeQuery(querySQL);
 
                 java.sql.Date sDate = new java.sql.Date(new java.util.Date().getTime());
+
                 //no data, retrieve from internet
                 if(result == null || !result.next()) {
                     System.out.println("no value! retrieve from web");
                     rate = GetRate.getUSD_CNY();
-                    sql = String.format("INSERT INTO usd_cny VALUES(%d, '%tF', %f);", id, sDate, rate);
-                    statement.executeUpdate(sql);
+                    String updateSQL = String.format("INSERT INTO usd_cny VALUES(%d, '%tF', %f);", id, sDate, rate);
+                    updateRate(statement, querySQL, updateSQL);
                 //old data, query for newest data
                 } else if(result.getDate("date").getDate() != new Date().getDate()){
                     System.out.println("value out of date! get new one from web");
                     rate = GetRate.getUSD_CNY();
-                    sql = String.format("UPDATE usd_cny SET rate = %f, date = '%tF' WHERE id = %d",
+                    String updateSQL = String.format("UPDATE usd_cny SET rate = %f, date = '%tF' WHERE id = %d",
                             rate, sDate, id);
-                    statement.executeUpdate(sql);
+                    updateRate(statement, querySQL, updateSQL);
                 //good data
                 } else {
                     System.out.println("value is good!");
                     rate = result.getFloat("rate");
-
                 }
             }
         } catch (Exception e){
             System.out.println("Error!!");
             e.printStackTrace();
-
         }
+        pool.releaseConnection(connection);
+        connection = null;
         return rate;
     }
 
-    private synchronized void updateRate(){
-
+    /**
+     *
+     * @param statement The statement used to executed sql
+     * @param querySQL Query sql, check whether data has been written into database by another thread
+     * @param updateSQL Actually update sql
+     */
+    private static synchronized void updateRate(Statement statement, String querySQL, String updateSQL){
+        try {
+            ResultSet result = statement.executeQuery(querySQL);
+            //No data or older date in database, update by new one
+            if(!result.next() || result.getDate("date").getDate() != new Date().getDate()){
+                statement.executeUpdate(updateSQL);
+            }
+        } catch (SQLException e){
+            System.out.println("Update Fail!!");
+        }
     }
 }

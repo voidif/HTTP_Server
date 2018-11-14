@@ -31,7 +31,7 @@ public class GetResponse {
 //            System.out.println(head);
 
             //get rate from database
-            float rate = DataBaseConnection.getInstance().getValue("USD_CNY");
+            float rate = DataBaseConnection.getRate("USD_CNY");
             JSONObject rateJson = new JSONObject();
             rateJson.put("USD_CNY", rate);
             //response

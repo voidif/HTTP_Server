@@ -9,7 +9,7 @@ public class DataBaseConnectionPoolTest {
         try{
             Connection test = pool.getConnection();
             Statement statement = test.createStatement();
-            String sql = "SELECT * FROM shipments";
+            String sql = "SELECT * FROM test";
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
                 System.out.println(resultSet.getInt(1));
