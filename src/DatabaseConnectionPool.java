@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DatabaseConnectionPool {
 
     private static DatabaseConnectionPool connectionPool = null;
-    private String DB_URL = "jdbc:mysql://localhost/rate";
+    private String DB_URL = "jdbc:mysql://144.202.127.76/rate";
     private String USER = "root";
     private String PASSWORD = "w5684766";
     private String TEST_TABLE = "test";

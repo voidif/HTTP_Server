@@ -1,6 +1,7 @@
 -- Database
 CREATE DATABASE rate;
 
+USE rate;
 -- Main Table
 CREATE TABLE usd_cny(
 id int NOT NULL,
