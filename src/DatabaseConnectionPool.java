@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class DatabaseConnectionPool {
 
     private static DatabaseConnectionPool connectionPool = null;
-    private String DB_URL = "jdbc:mysql://144.202.127.76/rate";
-    private String USER = "root";
+    private String DB_URL = "jdbc:mysql://localhost/rate";
+    private String USER = "vi";
     private String PASSWORD = "w5684766";
     private String TEST_TABLE = "test";
     /**
@@ -159,7 +159,7 @@ class pooledConnection{
     private boolean busy = true;
     private String DB_URL = "jdbc:mysql://localhost/";
     private String USER = "root";
-    private String PASSWORD = "w5684766";
+    private String PASSWORD = "w56847666";
 
 
     public pooledConnection(String DB_URL, String USER, String PASSWORD){
@@ -170,7 +170,8 @@ class pooledConnection{
             connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);
             busy = false;
         } catch (SQLException e){
-            System.out.println("ERROR: Create connection failed！！");
+            System.out.println("First ERROR: Create connection failed！！");
+            e.printStackTrace();
         }
     }
 
@@ -230,7 +231,7 @@ class pooledConnection{
             connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);
             busy = false;
         } catch (SQLException e){
-            System.out.println("ERROR: Create connection failed！！");
+            System.out.println("Second ERROR: Create connection failed！！");
         }
     }
 }

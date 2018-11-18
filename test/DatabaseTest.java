@@ -4,8 +4,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class DatabaseTest {
-    private static String DB_URL = "jdbc:mysql://localhost/";
-    private static String USER = "root";
+    private static String DB_URL = "jdbc:mysql://144.202.127.76/rate";
+    private static String USER = "vi";
     private static String PASS = "w5684766";
 
     public static void main(String args[]) throws Exception {
