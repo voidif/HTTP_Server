@@ -3,6 +3,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class GetResponse {
@@ -43,5 +45,25 @@ public class GetResponse {
             e.printStackTrace();
         }
 
+    }
+
+    public URL parseURL(String requestString) throws MalformedURLException{
+        String firstLine = null;
+        for(int i = 0; i < requestString.length(); i ++){
+            if(requestString.charAt(i) == '\r' && requestString.charAt(i + 1) == '\n'){
+                firstLine = requestString.substring(0, i);
+                break;
+            }
+        }
+        if(firstLine == null){
+            throw new MalformedURLException();
+        }
+        URL url = new URL(firstLine.split(" ")[1]);
+        return url;
+    }
+
+    public String getParasFromURL(URL url, String key){
+        String paras = url.toString().split("?")[1];
+        //TODO
     }
 }

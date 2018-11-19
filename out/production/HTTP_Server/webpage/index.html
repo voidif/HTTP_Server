@@ -5,10 +5,23 @@
         <p id="rate">6.59</p>
         <button type="submit" id="getRate">Get Rate Now!</button>
         <script>
+            "use strict";
             document.getElementById("getRate").addEventListener("click", function() {
-                rate = document.getElementById("rate")
-                rate.innerHTML = 1.0
+                getRate();
                 }, false);
+
+            function getRate() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function(){
+                    if (xmlhttp.readyState==4)
+                    {
+                        rate = document.getElementById("rate");
+                        rate.innerHTML = xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET","http://127.0.0.1/index.html?method=rate",true);
+                xmlhttp.send();
+            }
         </script>
     </body>
 </html>
