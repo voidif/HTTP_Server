@@ -15,11 +15,13 @@
                 xmlhttp.onreadystatechange=function(){
                     if (xmlhttp.readyState==4)
                     {
-                        rate = document.getElementById("rate");
-                        rate.innerHTML = xmlhttp.responseText;
+                        var rate = document.getElementById("rate");
+                        var text = xmlhttp.responseText;
+                        var obj = JSON.parse(text);
+                        rate.innerHTML = obj.USD_CNY;
                     }
                 }
-                xmlhttp.open("GET","http://127.0.0.1/index.html?method=rate",true);
+                xmlhttp.open("GET","/index.html?method=rate",true);
                 xmlhttp.send();
             }
         </script>

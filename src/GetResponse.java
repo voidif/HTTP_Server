@@ -1,8 +1,6 @@
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -32,14 +30,22 @@ public class GetResponse {
             String head = new String(buffer);
 //            System.out.println(head);
 
-            //get rate from database
-            float rate = DataBaseConnection.getRate("USD_CNY");
-            JSONObject rateJson = new JSONObject();
-            rateJson.put("USD_CNY", rate);
-            //response
-            String res = "HTTP/1.1 200 OK" + "\n\n" + rateJson.toString();
+            //parseURL
+            String url = parseURL(head);
+            //return index html or rate json
+            if(url.equals("/")){
+                writeHTML(response, url);
+            } else if(!url.substring(0,2).equals("/f")){
+                //get rate from database
+                float rate = DataBaseConnection.getRate("USD_CNY");
+                JSONObject rateJson = new JSONObject();
+                rateJson.put("USD_CNY", rate);
+                //response
+                writeJson(response, rateJson);
+            }
 
-            response.write(res.getBytes());
+
+            response.flush();
             response.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +53,13 @@ public class GetResponse {
 
     }
 
-    public URL parseURL(String requestString) throws MalformedURLException{
+    /**
+     * Parse the url from the HTTP Request
+     * @param requestString the HTTP Request head
+     * @return URL
+     * @throws MalformedURLException
+     */
+    public String parseURL(String requestString) throws MalformedURLException{
         String firstLine = null;
         for(int i = 0; i < requestString.length(); i ++){
             if(requestString.charAt(i) == '\r' && requestString.charAt(i + 1) == '\n'){
@@ -58,12 +70,47 @@ public class GetResponse {
         if(firstLine == null){
             throw new MalformedURLException();
         }
-        URL url = new URL(firstLine.split(" ")[1]);
+        String url = firstLine.split(" ")[1];
         return url;
     }
 
-    public String getParasFromURL(URL url, String key){
-        String paras = url.toString().split("?")[1];
-        //TODO
+    /**
+     * Return the correspond file according to URL.
+     * @param response The response that the file will write in.
+     * @param url the url of the HTML file.
+     */
+    public void writeHTML(OutputStream response, String url) throws IOException{
+        //read HTML
+        url = "webpage" + url + "index.html";
+        String htmlPath = this.getClass().getResource(url).getPath();
+        File file = new File(htmlPath);
+        FileInputStream fis = new FileInputStream(file);
+        byte[] data = new byte[(int) file.length()];
+        fis.read(data);
+        fis.close();
+        //make HTTP Head
+        String head = "HTTP/1.1 200 OK" + "\r\n" +
+                "Content-Type: text/html; charset=utf-8" + "\r\n" + "\r\n";
+
+        //write into response
+        response.write(head.getBytes());
+        response.write(data);
     }
+
+    /**
+     * Return a json object to client.
+     * @param response The response that the file will write in.
+     * @param json The json to be returned.
+     */
+    public void writeJson(OutputStream response, JSONObject json) throws IOException{
+        String head = "HTTP/1.1 200 OK" + "\r\n" +
+                "Content-Type: application/json" + "\r\n" + "\r\n";
+        response.write(head.getBytes());
+        response.write(json.toString().getBytes());
+    }
+
+//    public String getParasFromURL(URL url, String key){
+//        String paras = url.toString().split("?")[1];
+//        //TODO
+//    }
 }
