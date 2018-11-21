@@ -1,24 +1,30 @@
 <html>
     <body>
         <h1>Get Exchange Rate(USD to CNY)</h1>
-        <p>rate:</p>
-        <p id="rate">6.59</p>
+        <p>Rate: (Data refreshs every ten minutes)</p>
+        <p id = "rate">6.59</p>
+        <p id = "time"></p>
         <button type="submit" id="getRate">Get Rate Now!</button>
         <script>
             "use strict";
-            document.getElementById("getRate").addEventListener("click", function() {
-                getRate();
-                }, false);
+            window.addEventListener("load", getRate(), false);
+            document.getElementById("getRate").addEventListener("click", getRate);
 
             function getRate() {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange=function(){
                     if (xmlhttp.readyState==4)
                     {
+                        //update rate
                         var rate = document.getElementById("rate");
                         var text = xmlhttp.responseText;
                         var obj = JSON.parse(text);
                         rate.innerHTML = obj.USD_CNY;
+
+                        //update time
+                        var time = document.getElementById("time");
+                        var myDate = new Date();
+                        time.innerHTML = myDate.toLocaleTimeString();
                     }
                 }
                 xmlhttp.open("GET","/index.html?method=rate",true);
