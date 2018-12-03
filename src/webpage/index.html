@@ -5,23 +5,25 @@
         <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <!-- favorate icon -->
         <link rel="shortcut icon" href="http://www.usc.edu/favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <style type="text/css">
-            body {background-color: white}
-            h1 {text-align: center}
-            p {
-                text-align: center;
-                color: green;
-                font-family: arial;}
-            button {align-items: center}
-        </style>    
+        <!-- My CSS File -->
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
     </head>
     <body>
         <h1>Get Exchange Rate(USD to CNY)</h1>
         <p>rate:</p>
         <p id="rate">6.59</p>
-        <button type="submit" id="getRate">Get Rate Now!</button>
+        <button type="button" id="getRate" class="btn btn-default">Get Rate Now!</button>
+        <div class="container">
+            <p>“小时候每当我生病，母亲都会为我冲一杯咖啡，她温柔地说：“外国人都喝这个的。
+            ”幼小的我总害怕咖啡，酸甜苦涩交错。如今我走遍米萝、上岛、星巴克都找不到小时候喝的那个味道，
+            直到那天我喝了一杯板蓝根。” </p>
+            </div>
+             
+            <div class="container-fluid">
+            <p>“小时候每当我生病，母亲都会为我冲一杯咖啡，她温柔地说：“外国人都喝这个的。”
+            幼小的我总害怕咖啡，酸甜苦涩交错。如今我走遍米萝、上岛、星巴克都找不到小时候喝的那个味道，
+            直到那天我喝了一杯板蓝根。” </p>
         <script>
             "use strict";
             document.getElementById("getRate").addEventListener("click", function() {
