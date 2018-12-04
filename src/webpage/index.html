@@ -13,7 +13,7 @@
     <!-- body background="background.png" -->
         <div class="page">
             <div class="topping">
-                <img src="topping.jpeg" />
+                <img src="topping.jpg" />
             </div>
             <!--Navi Bar -->
             <div class="row" style="width: 100%; margin:auto">
@@ -64,6 +64,7 @@
             var time = document.getElementById("time");
             var rate = document.getElementById("rate");
             time.innerHTML = new Date().toLocaleTimeString();
+            getRate();
 
             function getRate() {
                 var xmlhttp = new XMLHttpRequest();
@@ -80,7 +81,7 @@
                         time.innerHTML = myDate.toLocaleTimeString();
                     }
                 }
-                xmlhttp.open("GET","/index.html?method=rate",true);
+                xmlhttp.open("GET","?method=rate",true);
                 xmlhttp.send();
             }
         </script>

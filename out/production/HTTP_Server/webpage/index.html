@@ -1,14 +1,70 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <!-- Bootstrap CSS -->  
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <!-- favorate icon -->
+        <link rel="shortcut icon" href="http://www.usc.edu/favicon.ico">
+        <!-- My CSS File -->
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+    </head>
     <body>
-        <h1>Get Exchange Rate(USD to CNY)</h1>
-        <p>Rate: (Data refreshs every ten minutes)</p>
-        <p id = "rate">6.59</p>
-        <p id = "time"></p>
-        <button type="submit" id="getRate">Get Rate Now!</button>
+    <!-- body background="background.png" -->
+        <div class="page">
+            <div class="topping">
+                <img src="topping.jpg" />
+            </div>
+            <!--Navi Bar -->
+            <div class="row" style="width: 100%; margin:auto">
+                <div class="col-md-12" style="background-color: #b81919">
+                    <div class="col-md-3"><a class="title" href="index.html">Index</a></div>
+                    <div class="col-md-4"><a class="title" href="index.html">Introduction</a></div>
+                    <div class="col-md-3"><a class="title" href="index.html">About</a></div>
+                </div>
+            </div>
+            <!--        -->
+            <div class="row" style="width: 100%; margin:auto">
+                <div class="col-md-8">
+                    <h1>Yifu Wang's Personal Website</h1>
+                    <p>I am Yifu Wang, a master student in computer science from the University of Southern California 
+                        who will graduate in December 2019. I am looking for the 2019 summer SDE internship. I interned 
+                        at two companies. One is about developing different modules like license manager and video 
+                        surveillance module under the Spring framework, another is game client developer based on the 
+                        Unreal 4 engine, which I managed to implement a complicate throw system that required communication 
+                        and sync info between client. I am familiar with Java, C++, and Python language and also have 
+                        knowledge about machine learning</p>
+                    <ul>
+                        <li><a href="https://github.com/voidif">Github</a></li>
+                        <li><a href="https://www.linkedin.com/in/yifu-wang-396480166">Linkedin</a></li>
+                        <li><a href="resume.pdf">Resume</a></li>
+                    </ul>
+                </div>
+                <!--Tool Bar-->
+                <div class="col-md-4">
+                    <h1>My Tools</h1>
+                    <div class="toolbox" style="background-color: #ffd04f">
+                        <h1 class="tooltitle">Get Exchange Rate(USD to CNY)</h1>
+                        <p>Rate: (Data refreshs every ten minutes)</p>
+                        <p id="rate">0.00</p>
+                        <p id = "time"></p>
+                        <center><button type="button" id="getRate" class="btn btn-default">Get Rate Now!</button></center>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
         <script>
             "use strict";
-            window.addEventListener("load", getRate(), false);
-            document.getElementById("getRate").addEventListener("click", getRate);
+            document.getElementById("getRate").addEventListener("click", function() {
+                getRate();
+                }, false);
+
+            var time = document.getElementById("time");
+            var rate = document.getElementById("rate");
+            time.innerHTML = new Date().toLocaleTimeString();
+            getRate();
 
             function getRate() {
                 var xmlhttp = new XMLHttpRequest();
@@ -16,18 +72,16 @@
                     if (xmlhttp.readyState==4)
                     {
                         //update rate
-                        var rate = document.getElementById("rate");
                         var text = xmlhttp.responseText;
                         var obj = JSON.parse(text);
                         rate.innerHTML = obj.USD_CNY;
 
                         //update time
-                        var time = document.getElementById("time");
                         var myDate = new Date();
                         time.innerHTML = myDate.toLocaleTimeString();
                     }
                 }
-                xmlhttp.open("GET","/index.html?method=rate",true);
+                xmlhttp.open("GET","?method=rate",true);
                 xmlhttp.send();
             }
         </script>
