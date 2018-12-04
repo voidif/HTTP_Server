@@ -3,6 +3,7 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 
@@ -140,14 +141,17 @@ public class GetResponse {
         head.append("content-length: " + data.length + "\r\n");
         //looking the file extension
         if(ext.equals("html")){
-            head.append("Content-Type: text/html; charset=utf-8" + "\r\n" + "\r\n");
-        } else if(ext.equals("css")){
-            head.append("content-type: text/css; charset=utf-8" + "\r\n" + "\r\n");
-        } else if(ext.equals("jpg")){
-            head.append("Content-Type: image/png" + "\r\n" + "\r\n");
-        } else if(ext.equals("png")){
-            head.append("Content-Type: image/jpeg" + "\r\n" + "\r\n");
+            head.append("Content-Type: text/html; charset=utf-8" + "\r\n");
+        } else if(ext.equals("css")) {
+            head.append("content-type: text/css; charset=utf-8" + "\r\n");
+        } else if(ext.equals("jpg")) {
+            head.append("Content-Type: image/png" + "\r\n");
+        } else if(ext.equals("png")) {
+            head.append("Content-Type: image/jpeg" + "\r\n");
+        } else if(ext.equals("pdf")) {
+            head.append("Content-Type: application/pdf; charset=utf-8" + "\r\n");
         }
+        head.append("\r\n");
         //write into response
         response.write(head.toString().getBytes());
         response.write(data);
