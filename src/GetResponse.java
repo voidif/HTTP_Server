@@ -63,12 +63,13 @@ public class GetResponse {
     public String parseURL(String requestString) throws MalformedURLException{
         String firstLine = null;
         for(int i = 0; i < requestString.length(); i ++){
-            if(requestString.charAt(i) == '\r' && requestString.charAt(i + 1) == '\n'){
+            if(requestString.charAt(i) == '\r'){
                 firstLine = requestString.substring(0, i);
                 break;
             }
         }
         if(firstLine == null){
+            System.out.println("MalformedURLException, URL:" + requestString);
             throw new MalformedURLException();
         }
         String url = firstLine.split(" ")[1];
@@ -117,7 +118,7 @@ public class GetResponse {
      * @param url The url that points to a file.
      */
     private void writeFile(OutputStream response, String url) throws IOException{
-        System.out.println(url);
+        //System.out.println(url);
         if(url.equals("/")) {url = url + "index.html";}
         //read file
         url = "webpage" + url;
@@ -150,6 +151,8 @@ public class GetResponse {
             head.append("Content-Type: image/jpeg" + "\r\n");
         } else if(ext.equals("pdf")) {
             head.append("Content-Type: application/pdf; charset=utf-8" + "\r\n");
+        } else if(ext.equals("js")){
+            head.append("Content-Type: application/javascript" + "\r\n");
         }
         head.append("\r\n");
         //write into response

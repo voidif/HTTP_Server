@@ -9,16 +9,17 @@
         <link rel="shortcut icon" href="http://www.usc.edu/favicon.ico">
         <!-- My CSS File -->
         <link rel="stylesheet" type="text/css" href="index.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">      
         <!-- My JS File -->   
-        <script src="index.js"></script>
+        <script src="../index.js"></script>
     </head>
     <body>
     <!-- body background="background.png" -->
         <div class="page">
             <div class="topping">
-                <img src="topping.jpg" />
+                <img src="../topping.jpg" />
             </div>
+
             <!--Navi Bar -->
             <nav class="navbar navbar-inverse" role="navigation">
                 <div class="navbar-header">
@@ -26,8 +27,8 @@
                 </div>
                 <div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Index</a></li>
-                        <li><a href="blog/index.html">Blog</a></li>
+                        <li><a href="../index.html">Index</a></li>
+                        <li class="active"><a href="index.html">Blog</a></li>
                         <li><a href="#">About</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -47,30 +48,28 @@
                     </ul>
                 </div>
             </nav>
-            <!--Old Navi Bar 
-            <div class="row" style="width: 100%; margin:auto">
-                <div class="col-md-12" style="background-color: #b81919">
-                    <div class="col-md-3"><a class="title" href="index.html">Index</a></div>
-                    <div class="col-md-3"><a class="title" href="index.html">Blog</a></div>
-                    <div class="col-md-3"><a class="title" href="index.html">About</a></div>
-                </div>
-            </div> -->
             <!--        -->
             <div class="row" style="width: 100%; margin:auto">
+                <!--Webpage Main Content-->
                 <div class="col-md-8">
-                    <h1>Yifu Wang's Personal Website</h1>
-                    <p>I am Yifu Wang, a master student in computer science from the University of Southern California 
-                        who will graduate in December 2019. I am looking for the 2019 summer SDE internship. I interned 
-                        at two companies. One is about developing different modules like license manager and video 
-                        surveillance module under the Spring framework, another is game client developer based on the 
-                        Unreal 4 engine, which I managed to implement a complicate throw system that required communication 
-                        and sync info between client. I am familiar with Java, C++, and Python language and also have 
-                        knowledge about machine learning</p>
-                    <ul>
-                        <li><a href="https://github.com/voidif">Github</a></li>
-                        <li><a href="https://www.linkedin.com/in/yifu-wang-396480166">Linkedin</a></li>
-                        <li><a href="resume.pdf">Resume</a></li>
-                    </ul>
+                    <div class="list-group">
+                        <a href="1.html" class="list-group-item">
+                            <h4 class="list-group-item-heading">
+                                PDF文件迷思
+                            </h4>
+                            <p class="list-group-item-text">
+                                一个奇怪的问题， 从服务器上下载的pdf乱码， 传输方式如下
+                            </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">
+                                还没有Blog!
+                            </h4>
+                            <p class="list-group-item-text">
+                                还没有简介！
+                            </p>
+                        </a>
+                    </div>
                 </div>
                 <!--Tool Bar-->
                 <div class="col-md-4">
@@ -83,9 +82,7 @@
                         <center><button type="button" id="getRate" class="btn btn-default">Get Rate Now!</button></center>
                     </div>
                 </div>
-                
             </div>
-            
         </div>
         <script>init();</script>
     </body>
