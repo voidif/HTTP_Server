@@ -1,3 +1,5 @@
+
+import java.io.ByteArrayInputStream;
 import java.nio.charset.Charset;
 
 public class CharsetTest {

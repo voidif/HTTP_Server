@@ -118,7 +118,7 @@ public class GetResponse {
      * @param url The url that points to a file.
      */
     private void writeFile(OutputStream response, String url) throws IOException{
-        //System.out.println(url);
+        System.out.println(url);
         if(url.equals("/")) {url = url + "index.html";}
         //read file
         url = "webpage" + url;
@@ -139,6 +139,7 @@ public class GetResponse {
         String ext = new String(extArray);
         //make HTTP Head
         StringBuilder head = new StringBuilder("HTTP/1.1 200 OK" + "\r\n");
+        //head.append("Connection: keep-alive" + "\r\n");
         head.append("content-length: " + data.length + "\r\n");
         //looking the file extension
         if(ext.equals("html")){
