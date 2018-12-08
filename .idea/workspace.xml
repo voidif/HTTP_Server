@@ -32,7 +32,7 @@
     <session id="-1224958856">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="1" />
@@ -124,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/src/ThreadPool.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="392">
-              <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
               <folding>
                 <element signature="e#730#731#0" expanded="true" />
                 <element signature="e#751#752#0" expanded="true" />
@@ -407,12 +407,12 @@
       <workItem from="1542654370242" duration="3591000" />
       <workItem from="1542778572958" duration="17000" />
       <workItem from="1542779725755" duration="2090000" />
-      <workItem from="1544253589103" duration="4440000" />
+      <workItem from="1544253589103" duration="4499000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20318000" />
+    <option name="totallyTimeSpent" value="20377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="23" width="1295" height="704" extended-state="6" />
@@ -427,7 +427,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31873906" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31873906" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370933" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -639,7 +639,7 @@
     <entry file="file://$PROJECT_DIR$/src/ThreadPool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
-          <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
           <folding>
             <element signature="e#730#731#0" expanded="true" />
             <element signature="e#751#752#0" expanded="true" />
