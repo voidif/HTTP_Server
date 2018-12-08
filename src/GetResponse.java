@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 
-public class GetResponse {
+public class GetResponse implements Run{
 
 
     private InputStream request;
@@ -16,6 +16,10 @@ public class GetResponse {
     public GetResponse(InputStream in, OutputStream out){
         request = in;
         response = out;
+    }
+
+    public void run(){
+        Response();
     }
 
     public void Response(){
