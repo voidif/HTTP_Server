@@ -29,7 +29,7 @@ public class ThreadPool {
      * @return An idle thread, if none, return null
      */
     public Thread getThread() {
-        for ()
+        return null;
     }
 
     /**
@@ -101,7 +101,7 @@ class MyThread extends Thread{
 
             }
 
-            wait();
+//            wait();
         }
     }
 }
