@@ -10,12 +10,12 @@ import java.sql.Date;
 public class MultiThreadTest{
     public static void main(String args[]) throws Exception {
         //multi thread test
-        int total = 1000;
+        int total = 2000;
         for (int i = 0; i < total; i ++){
             new TestThread("http://yifu.click/").start();
         }
         //sum up
-        Thread.sleep(20000);
+        Thread.sleep(30000);
         System.out.println("Test Complete:");
         System.out.println("Running Thread Number: " + total);
         System.out.println("Success: " + TestThread.good + ", Failed: " + TestThread.bad);
@@ -43,7 +43,7 @@ class TestThread extends Thread{
             long startTime = System.currentTimeMillis();
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            conn.setConnectTimeout(15000);
+            conn.setConnectTimeout(30000);
             conn.setRequestMethod("GET");
             conn.connect();
             String type = conn.getContentType();
