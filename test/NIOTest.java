@@ -52,7 +52,7 @@ public class NIOTest {
                     ByteBuffer buffer = ByteBuffer.allocate(10);
                     int len = sc.read(buffer);
                     StringBuilder res = new StringBuilder();
-                    
+
                     res.append(new String(buffer.array(), 0, len));
                     len = sc.read(buffer);
 
