@@ -34,6 +34,7 @@ public class NIOTest {
 
         while (true) {
             int num = selector.select();
+            //System.out.println(num);
 
             Set<SelectionKey> selectKeys = selector.selectedKeys();
             Iterator<SelectionKey> iter =selectKeys.iterator();
