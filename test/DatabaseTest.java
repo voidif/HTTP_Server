@@ -25,6 +25,7 @@ public class DatabaseTest {
         for (int i = 0; i < 10; i ++){
             Statement statement = connection.createStatement();
         }
+        Thread.yield();
     }
 }
 

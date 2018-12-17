@@ -1,0 +1,94 @@
+PS D:\Softwares\Apache24\bin> ./ab -n 100 -c 10 http://yifu.click/
+This is ApacheBench, Version 2.3 <$Revision: 1843412 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking yifu.click (be patient).....done
+
+
+Server Software:
+Server Hostname:        yifu.click
+Server Port:            80
+
+Document Path:          /
+Document Length:        4841 bytes
+
+Concurrency Level:      10
+Time taken for tests:   2.131 seconds
+Complete requests:      100
+Failed requests:        0
+Total transferred:      492200 bytes
+HTML transferred:       484100 bytes
+Requests per second:    46.93 [#/sec] (mean)
+Time per request:       213.075 [ms] (mean)
+Time per request:       21.307 [ms] (mean, across all concurrent requests)
+Transfer rate:          225.58 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       15   20   1.9     20      27
+Processing:    22  178  77.6    168     380
+Waiting:       16   80  43.6     77     195
+Total:         43  199  77.9    190     401
+
+Percentage of the requests served within a certain time (ms)
+  50%    190
+  66%    206
+  75%    225
+  80%    285
+  90%    323
+  95%    331
+  98%    368
+  99%    401
+ 100%    401 (longest request)
+PS D:\Softwares\Apache24\bin> ./ab -n 500 -c 20 http://yifu.click/
+This is ApacheBench, Version 2.3 <$Revision: 1843412 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking yifu.click (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Finished 500 requests
+
+
+Server Software:
+Server Hostname:        yifu.click
+Server Port:            80
+
+Document Path:          /
+Document Length:        4841 bytes
+
+Concurrency Level:      20
+Time taken for tests:   10.434 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      2461000 bytes
+HTML transferred:       2420500 bytes
+Requests per second:    47.92 [#/sec] (mean)
+Time per request:       417.365 [ms] (mean)
+Time per request:       20.868 [ms] (mean, across all concurrent requests)
+Transfer rate:          230.33 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       15   20   1.9     20      33
+Processing:    22  381  58.8    382     575
+Waiting:       19  176  92.7    176     370
+Total:         42  401  58.9    402     595
+
+Percentage of the requests served within a certain time (ms)
+  50%    402
+  66%    413
+  75%    419
+  80%    423
+  90%    465
+  95%    498
+  98%    534
+  99%    564
+ 100%    595 (longest request)
+PS D:\Softwares\Apache24\bin>
+-------------------------------------12/16/2018

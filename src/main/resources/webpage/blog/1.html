@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Bootstrap -->  
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- favorate icon -->
+        <link rel="shortcut icon" href="http://www.usc.edu/favicon.ico">
+        <!-- My CSS File -->
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+        <!-- My JS File -->   
+        <script src="../index.js"></script>   
+    </head>
+    <body>
+    <!-- body background="background.png" -->
+        <div class="page">
+            <div class="topping">
+                <img src="../topping.jpg" />
+            </div>
+
+            <!--Navi Bar -->
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Yifu' website</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="../index.html">Index</a></li>
+                        <li class="active"><a href="index.html">Blog</a></li>
+                        <li><a href="#">About</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                DropdownTest
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">a</a></li>
+                                <li><a href="#">b</a></li>
+                                <li><a href="#">c</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">da</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">dda</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--        -->
+            <div class="row" style="width: 100%; margin:auto">
+                <!--Webpage Main Content-->
+                <div class="col-md-8">
+                    <h1 class="page-header">PDF文件迷思</h1> 
+                    <p>一个奇怪的问题， 从服务器上下载的pdf乱码， 传输方式如下</p>
+                    <pre class="pre-scrollable">
+String htmlPath = this.getClass().getResource(url).getPath();
+File file = new File(htmlPath);
+FileInputStream fis = new FileInputStream(file);
+byte[] data = new byte[(int) file.length()];
+fis.read(data);  
+                    </pre>
+                    <p>其中对头部的操作如下</p>
+                    <pre>
+StringBuilder head = new StringBuilder("HTTP/1.1 200 OK" + "\r\n");
+                    </pre>
+                    <p>经过尝试后，加入下列语句后正常</p>
+                    <pre>
+head.append("Content-Type: application/pdf; charset=utf-8" + "\r\n");
+                    </pre>
+                    <p>估计原因为，当未指定Content-Type头部栏时，浏览器有不同的编码。</p>
+
+                    <p>参考：<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">字符编码笔记：ASCII，Unicode 和 UTF-8</a></p>
+                </div>
+                <!--Tool Bar-->
+                <div class="col-md-4">
+                    <h1>My Tools</h1>
+                    <div class="toolbox" style="background-color: #ffd04f">
+                        <h1 class="tooltitle">Get Exchange Rate(USD to CNY)</h1>
+                        <p>Rate: (Data refreshs every ten minutes)</p>
+                        <p id="rate">0.00</p>
+                        <p id = "time"></p>
+                        <center><button type="button" id="getRate" class="btn btn-default">Get Rate Now!</button></center>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <script>init();</script>
+    </body>
+</html>
