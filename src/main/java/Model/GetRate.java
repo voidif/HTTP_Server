@@ -1,3 +1,5 @@
+package Model;
+
 import org.json.JSONObject;
 
 import java.io.InputStream;

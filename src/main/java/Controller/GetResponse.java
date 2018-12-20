@@ -1,10 +1,10 @@
+package Controller;
+
+import Model.DataBaseConnection;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 
 
 public class GetResponse implements Run{
