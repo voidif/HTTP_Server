@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
@@ -18,25 +17,4 @@
     <mappers>
         <mapper resource="Model/MyBatis/TestMapper.xml"/>
     </mappers>
-=======
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-    <environments default="development">
-        <environment id="development">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost/rate"/>
-                <property name="username" value="vi"/>
-                <property name="password" value="w5684766"/>
-            </dataSource>
-        </environment>
-    </environments>
-    <mappers>
-        <mapper resource="Model/MyBatis/TestMapper.xml"/>
-    </mappers>
->>>>>>> 9a35e8826d38cfde3fc886d2da8135a5ae982c9b
 </configuration>
