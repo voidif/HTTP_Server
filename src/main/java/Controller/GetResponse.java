@@ -125,7 +125,7 @@ public class GetResponse implements Run{
         System.out.println(url);
         if(url.equals("/")) {url = url + "index.html";}
         //read file
-        url = "webpage" + url;
+        url = "../webpage" + url;
         String htmlPath = this.getClass().getResource(url).getPath();
         File file = new File(htmlPath);
         FileInputStream fis = new FileInputStream(file);
