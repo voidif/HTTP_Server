@@ -75,7 +75,7 @@
     <session id="492428270">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="20" />
+          <entry key="project.closed" value="21" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="2" />
@@ -319,7 +319,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545463003613" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545463029327" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -476,12 +476,12 @@
       <workItem from="1545357611065" duration="3072000" />
       <workItem from="1545374579363" duration="1611000" />
       <workItem from="1545376239169" duration="30000" />
-      <workItem from="1545436415112" duration="12009000" />
+      <workItem from="1545436415112" duration="12451000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59689000" />
+    <option name="totallyTimeSpent" value="60131000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -494,9 +494,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-279" width="1096" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1036" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
+      <window_info active="true" auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1036" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -505,7 +504,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.6702611" side_tool="true" weight="0.253861" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3172531" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3172531" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
