@@ -15,6 +15,7 @@ public class MyBatisTest {
         InputStream inputStream = HTTP_Server.class.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession session = sqlSessionFactory.openSession();
+        System.out.println(session.getClass());
         try {
             TestMapper mapper = session.getMapper(TestMapper.class);
             Test test = mapper.selectTestById(1);
