@@ -1,3 +1,5 @@
+package Learning;
+
 import Controller.HTTP_Server;
 import Model.MyBatis.Test;
 
@@ -6,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class MyBatisTest {
@@ -34,6 +35,5 @@ public class MyBatisTest {
         } catch (Exception e) {
             System.out.println("error");
         }
-
     }
 }
