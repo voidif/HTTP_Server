@@ -19,20 +19,15 @@ public class HTTP_Server {
                 Socket socket = serverSocket.accept();
                 //System.out.println("Client Connected! From : " + socket.getInetAddress().toString());
                 //receive connection, create a new thread to handle it
-                new Thread(){
-                    @Override
-                    public void run() {
-                        try{
-                            GetResponse response = new GetResponse(socket.getInputStream(), socket.getOutputStream());
-                            System.out.println(socket.hashCode());
-                            response.Response();
-                        }
-                        catch (IOException e){
-                            System.out.println("IO Error");
-                            e.printStackTrace();
-                        }
-                    }
-                }.start();
+                try{
+                    GetResponse response = new GetResponse(socket.getInputStream(), socket.getOutputStream());
+                    //System.out.println(socket.hashCode());
+                    response.run();
+                }
+                catch (IOException e){
+                    System.out.println("IO Error");
+                    e.printStackTrace();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

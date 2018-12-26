@@ -26,6 +26,6 @@ function getRate() {
             time.innerHTML = myDate.toLocaleTimeString();
         }
     }
-    xmlhttp.open("GET","/?method=rate",true);
+    xmlhttp.open("GET","/json?id=rate",true);
     xmlhttp.send();
 }

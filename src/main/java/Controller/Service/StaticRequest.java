@@ -1,5 +1,7 @@
 package Controller.Service;
 
+import Controller.HTTP_Server;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -48,18 +50,23 @@ public class StaticRequest {
      * @throws IOException
      */
     private static byte[] fetchFile(String url) throws IOException {
-        if (url.equals("/")) {
-            url = url + "index.html";
+        try {
+            if (url.equals("/")) {
+                url = url + "index.html";
+            }
+            //read file
+            url = "../webpage" + url;
+            String htmlPath = HTTP_Server.class.getResource(url).getPath();
+            File file = new File(htmlPath);
+            FileInputStream fis = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            fis.read(data);
+            fis.close();
+            return data;
+        } catch (NullPointerException e) {
+            System.out.println("No such file: " + url);
+            return new byte[0];
         }
-        //read file
-        url = "../webpage" + url;
-        String htmlPath = StaticRequest.class.getResource(url).getPath();
-        File file = new File(htmlPath);
-        FileInputStream fis = new FileInputStream(file);
-        byte[] data = new byte[(int) file.length()];
-        fis.read(data);
-        fis.close();
-        return data;
     }
 
     /**
