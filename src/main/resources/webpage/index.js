@@ -7,7 +7,10 @@ var rate;
 var time;
 //maindisplay window(div)
 var maindispaly;
-
+//navi bar buttons
+var goIndex;
+var goBlog;
+var goAbout;
 
 // run after full load
 function init() {
@@ -15,7 +18,9 @@ function init() {
     time = document.getElementById("time");
     rate = document.getElementById("rate");
     maindispaly = document.getElementById("maindisplay");
-
+    goIndex = document.getElementById("goIndex");
+    goBlog = document.getElementById("goBlog");
+    goAbout = document.getElementById("goAbout");
 
     time.innerHTML = new Date().toLocaleTimeString();
     getRate();
@@ -26,17 +31,38 @@ function init() {
         getRate();
     }, false);
     
-    //bind blogs navi bar button
-    document.getElementById("goBlog").addEventListener("click", function() {
+    //bind navi bar buttons
+    goIndex.addEventListener("click", function() {
+        jumpToIndex();
+    }, false);
+    goBlog.addEventListener("click", function() {
         jumpToBlog();
     }, false);
     
 
 }
 
-
+//jump to about page
 
 //jump to index page
+function jumpToIndex() {
+    //if already in index page, return
+    if (flag == 0) {
+        return;
+    }
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4){
+            //update index value
+            var html = xmlhttp.responseText;
+            maindispaly.innerHTML = html;
+            flag = 0;
+            setNaviBarHighlight(0);
+        }
+    }
+    xmlhttp.open("GET","/index/content.html",true);
+    xmlhttp.send();
+}
 
 //jump to blogs page
 function jumpToBlog() {
@@ -60,16 +86,20 @@ function displayBlog(blogJSON) {
     var blogs = blogJSON.blogs;
     for (var i = 0, len = blogs.length; i < len; i++) { 
         var blogA = document.createElement("a");
-        blogA.setAttribute("href", blogs[i].url);
+        blogA.setAttribute("blogurl", blogs[i].url);
         blogA.setAttribute("class", "list-group-item");
+        //add title click event
+        blogA.addEventListener("click", function() {
+            readBlog(blogA);
+        }, false);
 
         var blogTitle = document.createElement("h4");
         blogTitle.setAttribute("class", "list-group-item-heading");
-        blogTitle.appendChild(document.createTextNode(blogs[i].title));
+        blogTitle.innerHTML = blogs[i].title;
 
         var blogAbstract = document.createElement("p");
         blogAbstract.setAttribute("class", "list-group-item-text");
-        blogAbstract.appendChild(document.createTextNode("Test"));
+        blogAbstract.innerHTML = "Test";
 
         blogA.appendChild(blogTitle);
         blogA.appendChild(blogAbstract);
@@ -96,9 +126,9 @@ function displayBlog(blogJSON) {
         </div>
         */
     }
+    setNaviBarHighlight(1);
 }
 
-//jump to about page
 
 //get Rate function
 function getRate() {
@@ -132,4 +162,46 @@ function getBlogList() {
     }
     xmlhttp.open("GET","/json?id=blog",true);
     xmlhttp.send();
+}
+
+//Set navi bar highlight
+function setNaviBarHighlight(index) {
+    switch (index) {
+        case 0: {
+            goIndex.setAttribute("class", "active");
+            goBlog.setAttribute("class", "inactive");
+            goAbout.setAttribute("class", "inactive");
+            break;
+        }
+        case 1: {
+            goIndex.setAttribute("class", "inactive");
+            goBlog.setAttribute("class", "active");
+            goAbout.setAttribute("class", "inactive");
+            break;
+        }
+        case 2: {
+            goIndex.setAttribute("class", "inactive");
+            goBlog.setAttribute("class", "inactive");
+            goAbout.setAttribute("class", "active");
+            break;
+        }
+    }
+}
+
+//Blog Title Click Event
+function readBlog(html) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4){
+            //Parse markdown to HTML then update blog dispaly
+            var text = xmlhttp.responseText;
+            var converter = new showdown.Converter()
+            maindispaly.innerHTML = converter.makeHtml(text);
+            flag = -1;
+        }
+    }
+    var url = html.getAttribute("blogurl");
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
 }
