@@ -8,7 +8,7 @@ Using static HTML page and ajax to change display.</br>
 Using bootstrap for beatiuful design.</br>
 
 
-###current support function in tool bar
+### current support function in tool bar
 
 *Query USD to RMB exchange rate
 
