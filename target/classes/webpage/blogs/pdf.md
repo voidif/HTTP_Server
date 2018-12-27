@@ -1,7 +1,7 @@
 # PDF文件迷思
 一个奇怪的问题， 从服务器上下载的pdf乱码， 传输方式如下
 
-		String htmlPath = this.getClass().getResource(url).getPath();
+	String htmlPath = this.getClass().getResource(url).getPath();
 	File file = new File(htmlPath)
 	FileInputStream fis = new FileInputStream(file);
 	byte[] data = new byte[(int) file.length()];

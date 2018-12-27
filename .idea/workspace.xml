@@ -120,7 +120,7 @@
           <entry key="HTML" value="2" />
           <entry key="JAVA" value="173" />
           <entry key="JavaScript" value="7" />
-          <entry key="Markdown" value="1" />
+          <entry key="Markdown" value="4" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="3" />
           <entry key="XML" value="20" />
@@ -190,14 +190,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/StaticRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+            <state relative-caret-position="675">
+              <caret line="49" column="43" lean-forward="true" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/webpage/blogs/pdf.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="400">
+                <caret line="16" column="32" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="32" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -259,7 +271,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DataBaseConnection.java" />
         <option value="$PROJECT_DIR$/test/MultiThreadTest.java" />
         <option value="$PROJECT_DIR$/src/GetRate.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/af14ad10-b582-42d6-9444-60918663973b/console.sql" />
@@ -310,6 +321,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Blog.java" />
         <option value="$PROJECT_DIR$/src/main/resources/webpage/index.js" />
         <option value="$PROJECT_DIR$/src/main/resources/webpage/index/content.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/webpage/blogs/pdf.md" />
       </list>
     </option>
   </component>
@@ -333,9 +345,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2064" />
-    <option name="y" value="-285" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="1945" />
+    <option name="y" value="-281" />
     <option name="width" value="1096" />
     <option name="height" value="1896" />
   </component>
@@ -455,7 +467,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545890956907" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545891516711" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../LeetCode" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -634,12 +646,12 @@
       <workItem from="1545718524753" duration="5800000" />
       <workItem from="1545785067566" duration="7762000" />
       <workItem from="1545866905853" duration="876000" />
-      <workItem from="1545871325127" duration="12913000" />
+      <workItem from="1545871325127" duration="13981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92559000" />
+    <option name="totallyTimeSpent" value="93627000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -651,10 +663,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-279" width="1096" height="1896" extended-state="6" />
+    <frame x="1912" y="-279" width="1096" height="1896" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
+      <window_info active="true" auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -663,7 +675,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.6702611" side_tool="true" weight="0.253861" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973894" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3172531" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3172531" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -732,13 +744,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../Maven/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/executor/CachingExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../Maven/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/session/defaults/DefaultSqlSession.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="589">
@@ -1089,11 +1094,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/StaticRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        <state relative-caret-position="675">
+          <caret line="49" column="43" lean-forward="true" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/webpage/blogs/pdf.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="400">
+            <caret line="16" column="32" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="32" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
