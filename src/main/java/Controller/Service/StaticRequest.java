@@ -45,6 +45,7 @@ public class StaticRequest {
 
     /**
      * For a specific file, return the FileInputStream of it.
+     * Reminder: All file must under directory /classes/webpage
      * @param url File location
      * @return Byte array for a local file.
      * @throws IOException
@@ -55,8 +56,8 @@ public class StaticRequest {
                 url = url + "index.html";
             }
             //read file
-            url = "../webpage" + url;
-            String htmlPath = HTTP_Server.class.getResource(url).getPath();
+            url = "webpage" + url;
+            String htmlPath = StaticRequest.class.getClassLoader().getResource(url).getPath();
             File file = new File(htmlPath);
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];

@@ -6,4 +6,6 @@
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     <bean id="rate" class="Controller.Service.JSON.Rate">
     </bean>
+    <bean id="blog" class="Controller.Service.JSON.Blog">
+    </bean>
 </beans>
