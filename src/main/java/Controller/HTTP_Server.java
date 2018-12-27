@@ -1,5 +1,6 @@
 package Controller;
 
+import Controller.GetResponse;
 import Model.DataBaseConnection;
 import Model.DatabaseConnectionPool;
 
