@@ -16,15 +16,15 @@ public class Blog implements JSONRequest{
     @Override
     public JSONObject response(JSONObject paras) {
         File blogPath = new File(
-                getClass().getClassLoader().getResource("webpage/blog").getFile());
+                getClass().getClassLoader().getResource("webpage/blogs").getFile());
         JSONObject result = new JSONObject();
-        //find all blog file in current directory
+        //find all blogs file in current directory
         if(blogPath.isDirectory()) {
             JSONArray array = new JSONArray();
             File[] blogs = blogPath.listFiles();
             for(File tmp : blogs) {
                 String name = tmp.getName();
-                //create a JSON array for single blog
+                //create a JSON array for single blogs
                 JSONObject blog = new JSONObject();
 
                 blog.put("title", name);
@@ -34,7 +34,7 @@ public class Blog implements JSONRequest{
             result.put("blogs", array);
         }
         System.out.println(result.toString());
-        return null;
+        return result;
     }
 }
 

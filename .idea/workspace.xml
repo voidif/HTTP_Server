@@ -99,11 +99,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8993" />
-          <entry key="JavaScript" value="23" />
+          <entry key="JAVA" value="9008" />
+          <entry key="JavaScript" value="24" />
           <entry key="PLAIN_TEXT" value="103" />
           <entry key="SQL" value="3" />
-          <entry key="XML" value="266" />
+          <entry key="XML" value="273" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -118,12 +118,12 @@
         <counts>
           <entry key="CLASS" value="4" />
           <entry key="HTML" value="1" />
-          <entry key="JAVA" value="171" />
-          <entry key="JavaScript" value="6" />
+          <entry key="JAVA" value="173" />
+          <entry key="JavaScript" value="7" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="3" />
-          <entry key="XML" value="18" />
+          <entry key="XML" value="20" />
         </counts>
       </usages-collector>
     </session>
@@ -170,19 +170,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Blog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="6" column="48" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="48" />
+            <state relative-caret-position="775">
+              <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/webpage/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="908">
+              <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/StaticRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="47" column="63" lean-forward="true" selection-start-line="47" selection-start-column="63" selection-end-line="47" selection-end-column="63" />
+            <state relative-caret-position="525">
+              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -190,14 +202,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Blog.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequestHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="725">
+              <caret line="37" column="21" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/JSONBeans.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -253,7 +271,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DataBase.java" />
         <option value="$PROJECT_DIR$/test/test.java" />
         <option value="$PROJECT_DIR$/src/DataBaseConnection.java" />
         <option value="$PROJECT_DIR$/test/MultiThreadTest.java" />
@@ -295,7 +312,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Methods/Beans.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Methods/Rate.java" />
         <option value="$PROJECT_DIR$/target/classes/webpage/index.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/webpage/index.js" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequestHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/HTTPLibrary.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/HTTP_Server.java" />
@@ -303,7 +319,9 @@
         <option value="$PROJECT_DIR$/target/classes/Mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Rate.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/StaticRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/JSONBeans.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Blog.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/webpage/index.js" />
       </list>
     </option>
   </component>
@@ -379,40 +397,6 @@
               <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
-              <item name="JSON" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -426,13 +410,11 @@
             <path>
               <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
               <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="webpage" type="462c0819:PsiDirectoryNode" />
+              <item name="blogs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
@@ -469,7 +451,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545874120769" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545878023128" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../LeetCode" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -501,7 +483,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Tester">
+  <component name="RunManager" selected="Application.HTTP_Server">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HEIGHT" value="0" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
@@ -599,8 +581,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Tester" />
         <item itemvalue="Application.HTTP_Server" />
+        <item itemvalue="Application.Tester" />
         <item itemvalue="Application.SpringTest" />
         <item itemvalue="Application.DatabaseTest" />
         <item itemvalue="Application.MyBatisTest" />
@@ -648,12 +630,12 @@
       <workItem from="1545718524753" duration="5800000" />
       <workItem from="1545785067566" duration="7762000" />
       <workItem from="1545866905853" duration="876000" />
-      <workItem from="1545871325127" duration="2646000" />
+      <workItem from="1545871325127" duration="6365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82292000" />
+    <option name="totallyTimeSpent" value="86011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -666,9 +648,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-279" width="1096" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
+      <window_info active="true" auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -676,8 +657,8 @@
       <window_info x="1650" y="17" width="271" height="1025" id="Structure" order="5" sideWeight="0.32973894" side_tool="true" type="FLOATING" weight="0.253861" />
       <window_info id="Favorites" order="6" sideWeight="0.6702611" side_tool="true" weight="0.253861" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32973894" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3172531" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32973894" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3172531" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -735,6 +716,12 @@
           <line>58</line>
           <properties />
           <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequestHelper.java</url>
+          <line>34</line>
+          <properties />
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -931,13 +918,6 @@
         <state relative-caret-position="-1270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/webpage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/webpage/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -956,13 +936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1328">
           <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/JSONBeans.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1022,20 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Run.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/HTTP_Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Softwares/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -1054,37 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/HTTPLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="28" column="44" lean-forward="true" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="6" column="48" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/StaticRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="47" column="63" lean-forward="true" selection-start-line="47" selection-start-column="63" selection-end-line="47" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../Maven/.m2/repository/org/json/json/20180813/json-20180813-sources.jar!/org/json/JSONArray.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3915">
@@ -1099,10 +1027,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/HTTPLibrary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/HTTP_Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Run.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/JSONRequestHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="37" column="21" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/JSONBeans.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/webpage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="908">
+          <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/JSON/Blog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+        <state relative-caret-position="775">
+          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Service/StaticRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
