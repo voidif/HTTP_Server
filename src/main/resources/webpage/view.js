@@ -71,7 +71,7 @@ var view = {
             blogA.setAttribute("class", "list-group-item");
             //add title click event
             blogA.addEventListener("click", function() {
-                readBlog(blogA);
+                view.readBlog(blogA);
             }, false);
 
             var blogTitle = document.createElement("h4");
