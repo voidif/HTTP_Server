@@ -1,9 +1,14 @@
 package Controller.GetService;
 
+import Controller.HTTPLibrary;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.http.HttpRequest;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 
 /**
  * Dealing with static file get request
@@ -14,7 +19,7 @@ public class StaticRequest {
      * write a specific file to client response according the URL.
      * @param response The response that the file will write in.
      */
-    public static void writeStaticFile(OutputStream response, String url) throws IOException {
+    public static void writeStaticFile(SocketChannel response, String url) throws IOException {
         byte[] data = fetchFile(url);
         String ext = getFileExtension(url);
         //make HTTP Head
@@ -37,8 +42,11 @@ public class StaticRequest {
         }
         head.append("\r\n");
         //write into response
-        response.write(head.toString().getBytes());
-        response.write(data);
+        byte[] headArray = head.toString().getBytes();
+        byte[] message = new byte[headArray.length + data.length];
+        System.arraycopy(headArray, 0, message, 0, headArray.length);
+        System.arraycopy(data, 0, message, headArray.length, data.length);
+        HTTPLibrary.writeString(response, message);
     }
 
     /**

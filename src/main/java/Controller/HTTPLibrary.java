@@ -2,7 +2,10 @@ package Controller;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 
 /**
  * This class contains many HTTP related helper function
@@ -57,4 +60,30 @@ public class HTTPLibrary {
         String[] paras = httpMessage.split("/r/n/r/n");
         return paras;
     }
+
+    /**
+     * Read the message from string, put it into an socketChannel
+     * @param response The socket channel to write
+     * @param msg The data byte array
+     */
+    public static void writeString(SocketChannel response, byte[] msg) throws IOException {
+        //read from 0 and 1024 byte every time
+
+        ByteBuffer block = ByteBuffer.wrap(msg);
+        response.write(block);
+
+//        while(offset < msg.length) {
+//            //put data into buffer
+//            len = Math.min(msg.length - offset, block.capacity());
+//            block.put(msg, offset, len);
+//            offset += len;
+//
+//            //read data from buffer, write it to channel
+//            block.flip();
+//            response.write(block);
+//            block.clear();
+//        }
+    }
 }
+
+

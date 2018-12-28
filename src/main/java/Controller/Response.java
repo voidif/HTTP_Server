@@ -5,21 +5,40 @@ import Controller.GetService.StaticRequest;
 import Controller.PostService.CreateBlog;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 
 
 public class Response implements Run{
 
 
-    private InputStream request;
-    private OutputStream response;
+    private SocketChannel request;
+    private SocketChannel response;
 
-    public Response(InputStream in, OutputStream out){
-        request = in;
-        response = out;
+    public Response(SocketChannel sc, SocketChannel out){
+        request = sc;
+        response = sc;
     }
 
     public void run(){
         Response();
+    }
+
+    /**
+     * Read request message from NIO channel
+     * @return Request message string
+     * @throws IOException
+     */
+    private String readRequest() throws IOException {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        int len = request.read(buffer);
+        StringBuilder res = new StringBuilder();
+
+        while(len > 0) {
+            res.append(new String(buffer.array(), 0, len));
+            len = request.read(buffer);
+        }
+        return res.toString();
     }
 
     /**
@@ -35,8 +54,8 @@ public class Response implements Run{
     private void Response(){
 
         try {
-            byte[] buffer = request.readAllBytes();
-            String message = new String(buffer);
+
+            String message = readRequest();
 
             //Get head and body
             String[] paras = HTTPLibrary.getHeadAndBody(message);
@@ -62,9 +81,8 @@ public class Response implements Run{
                 }
             } else {
                 //POST
-                CreateBlog.stroage(response, url, body);
+                CreateBlog.storage(response, url, body);
             }
-            response.flush();
             response.close();
         } catch (Exception e) {
             e.printStackTrace();

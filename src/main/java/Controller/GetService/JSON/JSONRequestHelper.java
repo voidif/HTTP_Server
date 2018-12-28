@@ -9,6 +9,8 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 
 /**
  * Dealing JSON related request, For every JSON request, the url
@@ -22,7 +24,7 @@ public class JSONRequestHelper {
      * @param response
      * @param url
      */
-    public static void invokeMethod(OutputStream response, String url) {
+    public static void invokeMethod(SocketChannel response, String url) {
         JSONObject paras = HTTPLibrary.getParams(url);
         String id = (String) paras.get("id");
 
@@ -47,11 +49,12 @@ public class JSONRequestHelper {
      * @param response The response that the file will write in.
      * @param json The json to be returned.
      */
-    private static void writeJson(OutputStream response, JSONObject json) throws IOException {
+    private static void writeJson(SocketChannel response, JSONObject json) throws IOException {
         String head = "HTTP/1.1 200 OK" + "\r\n" +
                 "Content-Type: application/json" + "\r\n" + "\r\n";
-        response.write(head.getBytes());
-        response.write(json.toString().getBytes());
+
+        String message = head.concat(json.toString());
+        HTTPLibrary.writeString(response, message.getBytes());
     }
 }
 
