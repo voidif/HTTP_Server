@@ -4,8 +4,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-    <bean id="rate" class="Controller.Service.JSON.Rate">
+    <bean id="rate" class="Controller.GetService.JSON.Rate">
     </bean>
-    <bean id="blog" class="Controller.Service.JSON.Blog">
+    <bean id="blog" class="Controller.GetService.JSON.Blog">
     </bean>
 </beans>

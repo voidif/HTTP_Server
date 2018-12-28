@@ -27,23 +27,34 @@ public class HTTPLibrary {
 
     /**
      * Parse the url from the HTTP Request
-     * @param requestString the HTTP Request head
-     * @return URL
+     * @param httpHead the HTTP Request head
+     * @return String array for first element represents HTTP method
+     * and second represents URL
      * @throws MalformedURLException
      */
-    public static String parseURL(String requestString) throws MalformedURLException{
+    public static String[] parseURL(String httpHead) throws MalformedURLException{
         String firstLine = null;
-        for(int i = 0; i < requestString.length(); i ++){
-            if(requestString.charAt(i) == '\r'){
-                firstLine = requestString.substring(0, i);
+        for(int i = 0; i < httpHead.length(); i ++){
+            if(httpHead.charAt(i) == '\r'){
+                firstLine = httpHead.substring(0, i);
                 break;
             }
         }
         if(firstLine == null){
-            System.out.println("MalformedURLException, URL:" + requestString);
+            System.out.println("MalformedURLException, URL:" + httpHead);
             throw new MalformedURLException();
         }
-        String url = firstLine.split(" ")[1];
-        return url;
+        String[] paras = firstLine.split(" ");
+        return paras;
+    }
+
+    /**
+     * Get HTTP head from whole HTTP message
+     * @param httpMessage incoming HTTP request message
+     * @return An string array with size = 2 for HTTP head and body
+     */
+    public static String[] getHeadAndBody(String httpMessage) {
+        String[] paras = httpMessage.split("/r/n/r/n");
+        return paras;
     }
 }

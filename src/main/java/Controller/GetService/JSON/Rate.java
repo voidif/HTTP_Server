@@ -1,6 +1,5 @@
-package Controller.Service.JSON;
+package Controller.GetService.JSON;
 
-import Controller.Service.JSON.JSONRequest;
 import Model.DataBaseConnection;
 import org.json.JSONObject;
 

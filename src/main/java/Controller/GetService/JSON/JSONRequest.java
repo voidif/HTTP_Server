@@ -1,7 +1,6 @@
-package Controller.Service.JSON;
+package Controller.GetService.JSON;
 
 import org.json.JSONObject;
-import java.io.OutputStream;
 
 public interface JSONRequest {
     public  JSONObject response(JSONObject paras);

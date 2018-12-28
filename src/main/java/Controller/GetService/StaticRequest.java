@@ -1,6 +1,4 @@
-package Controller.Service;
-
-import Controller.HTTP_Server;
+package Controller.GetService;
 
 import java.io.File;
 import java.io.FileInputStream;

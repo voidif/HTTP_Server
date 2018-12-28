@@ -1,4 +1,4 @@
-package Controller.Service.JSON;
+package Controller.GetService.JSON;
 
 import Controller.HTTPLibrary;
 import org.json.JSONObject;

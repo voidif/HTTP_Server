@@ -1,11 +1,9 @@
-package Controller.Service.JSON;
+package Controller.GetService.JSON;
 
-import Controller.HTTP_Server;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Get Blog Title and url JSON object

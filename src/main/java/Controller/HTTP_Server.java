@@ -1,6 +1,5 @@
 package Controller;
 
-import Controller.GetResponse;
 import Model.DataBaseConnection;
 import Model.DatabaseConnectionPool;
 
@@ -21,7 +20,7 @@ public class HTTP_Server {
                 //System.out.println("Client Connected! From : " + socket.getInetAddress().toString());
                 //receive connection, create a new thread to handle it
                 try{
-                    GetResponse response = new GetResponse(socket.getInputStream(), socket.getOutputStream());
+                    Response response = new Response(socket.getInputStream(), socket.getOutputStream());
                     //System.out.println(socket.hashCode());
                     response.run();
                 }
