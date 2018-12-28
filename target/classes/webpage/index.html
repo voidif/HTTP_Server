@@ -11,7 +11,8 @@
         <link rel="stylesheet" type="text/css" href="index.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">     
         <!-- My JS File -->   
-        <script type="text/javascript" charset="UTF-8" src="index.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="view.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="tools.js"></script>
         <!-- MarkDown JS File-->
         <script src="https://cdn.rawgit.com/showdownjs/showdown/1.9.0/dist/showdown.min.js"></script>
     </head>
@@ -89,6 +90,9 @@
             </div>
             
         </div>
-        <script>init();</script>
+        <script>
+            view.init();
+            tools.init();
+        </script>
     </body>
 </html>
