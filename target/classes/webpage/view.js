@@ -156,9 +156,22 @@ var view = {
         xmlhttp.onreadystatechange = function(){
             if (xmlhttp.readyState == 4){
                 //Parse markdown to HTML then update blog dispaly
+                marked.setOptions({
+                    renderer: new marked.Renderer(),
+                    gfm: true,
+                    tables: true,
+                    escaped : true,
+                    breaks: false,
+                    pedantic: false,
+                    sanitize: false,
+                    smartLists: true,
+                    smartypants: false,
+                    highlight: function (code) {
+                      return hljs.highlightAuto(code).value;
+                    }
+                  });
                 var text = xmlhttp.responseText;
-                var converter = new showdown.Converter()
-                view.maindispaly.innerHTML = converter.makeHtml(text);
+                view.maindispaly.innerHTML = marked(text);
                 view.flag = -1;
             }
         }
