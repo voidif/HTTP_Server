@@ -6,6 +6,8 @@ var edit = {
         this.saveButton = document.getElementById("save");
         //test
         this.testBlock = document.getElementById("testblock");
+        //title text
+        this.titleText = document.getElementById("titletext");
 
         this.editor = editormd("editor", {
             width   : "100%",
@@ -37,23 +39,41 @@ var edit = {
     },
 
     save: function() {
-        marked.setOptions({
-            renderer: new marked.Renderer(),
-            gfm: true,
-            tables: true,
-            escaped : true,
-            breaks: false,
-            pedantic: false,
-            sanitize: false,
-            smartLists: true,
-            smartypants: false,
-            highlight: function (code) {
-              return hljs.highlightAuto(code).value;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState == 4){
+                //update page dispaly
+                var text = xmlhttp.responseText;
+                alert(text);
             }
-          });
+        }
 
-        //Test
-        var text = this.editor.getMarkdown();
-        this.testBlock.innerHTML = marked(text);
+        //get post message
+        var msg = {
+            title : this.titleText.value + ".md",
+            content : this.editor.getMarkdown()
+        }
+        var msgText = JSON.stringify(msg);
+        xmlhttp.open("POST","/", true);
+        xmlhttp.send(msgText);
+
+        // marked.setOptions({
+        //     renderer: new marked.Renderer(),
+        //     gfm: true,
+        //     tables: true,
+        //     escaped : true,
+        //     breaks: false,
+        //     pedantic: false,
+        //     sanitize: false,
+        //     smartLists: true,
+        //     smartypants: false,
+        //     highlight: function (code) {
+        //       return hljs.highlightAuto(code).value;
+        //     }
+        //   });
+
+        // //Test
+        // var text = this.editor.getMarkdown();
+        // this.testBlock.innerHTML = marked(text);
     }
 }

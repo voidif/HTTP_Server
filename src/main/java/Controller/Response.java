@@ -44,6 +44,7 @@ public class Response implements Run{
         StringBuilder res = new StringBuilder();
         while(len > 0) {
             res.append(new String(buffer.array(), 0, len));
+            buffer.flip();
             len = request.read(buffer);
         }
         return res.toString();

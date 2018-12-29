@@ -13,8 +13,7 @@ public class CreateBlog {
     private static final String targetRelativePath = "webpage/blogs";
 
     public static void storage(SocketChannel response, String url, String body) throws IOException {
-        String para = url.substring(6);
-        JSONObject paras = HTTPLibrary.parseParams(para);
+        JSONObject paras = new JSONObject(body);
         String blogTitle = (String)paras.get("title");
 
         //create new file
@@ -37,7 +36,7 @@ public class CreateBlog {
         String head = "HTTP/1.1 200 OK" + "\r\n" +
                 "\r\n";
 
-        String message = head.concat(body);
+        String message = head + "success!";
         HTTPLibrary.writeString(response, message.getBytes());
     }
 
