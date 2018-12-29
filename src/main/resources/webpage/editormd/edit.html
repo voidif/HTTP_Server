@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!-- Bootstrap -->  
-        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
         <!-- Editor.md File-->
         <link rel="stylesheet" href="editormd.css" />
         <script src="editormd.min.js"></script>
@@ -53,7 +53,16 @@
                     </ul>
                 </div>
             </nav>
-            <button id = "save" class="btn btn-default">Save</button>
+            <div align="left" style="float:left">
+                <form>
+                    FileName:<br>
+                    <input type="text" title="newBlog">
+                    <br>
+                </form>
+            </div>
+            <div sytle="margin-left: 100px">
+                <button id = "save" class="btn btn-default">Save</button>
+            </div>
             <div id="editor">
                 <textarea style="display:none;">
                 </textarea>

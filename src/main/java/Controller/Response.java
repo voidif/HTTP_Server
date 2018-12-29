@@ -77,20 +77,21 @@ public class Response implements Run{
             if(paras.length > 1) {
                 body = paras[1];
             }
-            //Get method and url
-            String[] httpFirstLine = HTTPLibrary.parseURL(head);
+            //Get method and url and support protocol
+            String[] httpFirstLine = HTTPLibrary.parseHttpFirstLine(head);
             String httpMethod = httpFirstLine[0];
             String url = httpFirstLine[1];
 
             //Looking HTTP method
             //current support: GET, POST
             if(httpMethod.equals("GET")) {
+                String[] getParas = HTTPLibrary.parseURL(url);
                 if(url.length() >= 6 && url.substring(0, 6).equals("/json?")){
                     //invoke JSON related method
-                    JSONRequestHelper.invokeMethod(response, url);
+                    JSONRequestHelper.invokeMethod(response, getParas[1]);
                 } else {
                     //Static File Method
-                    StaticRequest.writeStaticFile(response, url);
+                    StaticRequest.writeStaticFile(response, getParas[0]);
                 }
             } else {
                 //POST

@@ -13,12 +13,33 @@ import java.nio.channels.SocketChannel;
  * This class contains many HTTP related helper function
  */
 public class HTTPLibrary {
+
+    /**
+     * Parse the pure url and paras from HTTP request url
+     * @param url the pure url and paras String
+     * @return
+     */
+    public static String[] parseURL(String url) {
+        String[] res = new String[2];
+        for(int i = 0; i < url.length(); i ++){
+            if(url.charAt(i) == '?'){
+                res[0] = url.substring(0, i);
+                res[1] = url.substring(i + 1, url.length());
+                break;
+            }
+        }
+        if(res[0] == null) {
+            res[0] = url;
+        }
+        return res;
+    }
+
     /**
      * Parses key-value pairs for HTTP GET method from URL
      * @param para key-value string : (key=value&key=value)
      * @return JSON object contains all parameters
      */
-    public static JSONObject getParams(String para) {
+    public static JSONObject parseParams(String para) {
         String[] paras = para.split("&");
 
         JSONObject result = new JSONObject();
@@ -30,13 +51,13 @@ public class HTTPLibrary {
     }
 
     /**
-     * Parse the url from the HTTP Request
+     * Parse the The first line from the HTTP Request
      * @param httpHead the HTTP Request head
      * @return String array for first element represents HTTP method
-     * and second represents URL
+     * and second represents URL and third parameter represents HTTP protocol
      * @throws MalformedURLException
      */
-    public static String[] parseURL(String httpHead) throws MalformedURLException{
+    public static String[] parseHttpFirstLine(String httpHead) throws MalformedURLException{
         String firstLine = null;
         for(int i = 0; i < httpHead.length(); i ++){
             if(httpHead.charAt(i) == '\r'){

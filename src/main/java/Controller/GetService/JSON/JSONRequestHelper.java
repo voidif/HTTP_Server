@@ -22,11 +22,10 @@ public class JSONRequestHelper {
     /**
      * Invoke corresponding method based on id
      * @param response
-     * @param url
+     * @param para key-value pair parameter string
      */
-    public static void invokeMethod(SocketChannel response, String url) {
-        String para = url.substring(6);
-        JSONObject paras = HTTPLibrary.getParams(url);
+    public static void invokeMethod(SocketChannel response, String para) {
+        JSONObject paras = HTTPLibrary.parseParams(para);
         String id = (String) paras.get("id");
 
         //Using spring to create method bean
