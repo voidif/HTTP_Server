@@ -395,14 +395,6 @@
             <path>
               <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
               <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-              <item name="blogs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HTTP_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HTTP_Server" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -635,12 +627,12 @@
       <workItem from="1545935362894" duration="8050000" />
       <workItem from="1545977834033" duration="6550000" />
       <workItem from="1546019472761" duration="22320000" />
-      <workItem from="1546106554341" duration="970000" />
+      <workItem from="1546106554341" duration="2834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132761000" />
+    <option name="totallyTimeSpent" value="134625000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

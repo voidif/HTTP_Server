@@ -89,14 +89,16 @@ var view = {
             blogA.setAttribute("class", "list-group-item");
             //add title click event
             blogA.addEventListener("click", function() {
-                view.readBlog(blogA);
+                view.readBlog(event);
             }, false);
 
             var blogTitle = document.createElement("h4");
+            blogTitle.setAttribute("blogurl", blogs[i].url);
             blogTitle.setAttribute("class", "list-group-item-heading");
             blogTitle.innerHTML = blogs[i].title;
 
             var blogAbstract = document.createElement("p");
+            blogAbstract.setAttribute("blogurl", blogs[i].url);
             blogAbstract.setAttribute("class", "list-group-item-text");
             blogAbstract.innerHTML = "Test";
 
@@ -169,7 +171,8 @@ var view = {
     },
 
     //Blog Title Click Event
-    readBlog: function(html) {
+    readBlog: function(event) {
+
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if (xmlhttp.readyState == 4){
@@ -193,7 +196,7 @@ var view = {
                 view.flag = -1;
             }
         }
-        var url = html.getAttribute("blogurl");
+        var url = event.target.getAttribute("blogurl");
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
 
