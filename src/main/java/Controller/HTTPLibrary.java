@@ -2,9 +2,11 @@ package Controller;
 
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 /**
@@ -13,11 +15,10 @@ import java.nio.channels.SocketChannel;
 public class HTTPLibrary {
     /**
      * Parses key-value pairs for HTTP GET method from URL
-     * @param url HTTP URL
+     * @param para key-value string : (key=value&key=value)
      * @return JSON object contains all parameters
      */
-    public static JSONObject getParams(String url) {
-        String para = url.substring(6, url.length());
+    public static JSONObject getParams(String para) {
         String[] paras = para.split("&");
 
         JSONObject result = new JSONObject();
@@ -57,7 +58,7 @@ public class HTTPLibrary {
      * @return An string array with size = 2 for HTTP head and body
      */
     public static String[] getHeadAndBody(String httpMessage) {
-        String[] paras = httpMessage.split("/r/n/r/n");
+        String[] paras = httpMessage.split("\r\n\r\n");
         return paras;
     }
 
@@ -71,6 +72,7 @@ public class HTTPLibrary {
 
         ByteBuffer block = ByteBuffer.wrap(msg);
         response.write(block);
+        //response.close();
 
 //        while(offset < msg.length) {
 //            //put data into buffer
@@ -83,6 +85,20 @@ public class HTTPLibrary {
 //            response.write(block);
 //            block.clear();
 //        }
+    }
+
+
+    /**
+     * In the case of client abnormal close connection, the read event
+     * may always occurs. we need to close channel manually
+     * @param key selector key associated to channel
+     * @param sc socket channel
+     * @throws IOException
+     */
+    public static void closeChannel(SelectionKey key, SocketChannel sc) throws IOException {
+        sc.close();
+        key.cancel();
+        System.out.println("NIO BUG!");
     }
 }
 

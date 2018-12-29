@@ -101,7 +101,7 @@ public class HTTP_Server {
      */
     private static void clientReadyToRead(SelectionKey key) throws IOException {
         SocketChannel sc = (SocketChannel)key.channel();
-        Response response = new Response(sc, sc);
+        Response response = new Response(sc, sc, key);
         response.run();
     }
 }

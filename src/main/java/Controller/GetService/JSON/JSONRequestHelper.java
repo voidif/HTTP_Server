@@ -25,6 +25,7 @@ public class JSONRequestHelper {
      * @param url
      */
     public static void invokeMethod(SocketChannel response, String url) {
+        String para = url.substring(6);
         JSONObject paras = HTTPLibrary.getParams(url);
         String id = (String) paras.get("id");
 

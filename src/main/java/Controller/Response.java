@@ -6,6 +6,7 @@ import Controller.PostService.CreateBlog;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 
@@ -14,10 +15,12 @@ public class Response implements Run{
 
     private SocketChannel request;
     private SocketChannel response;
+    private SelectionKey key;
 
-    public Response(SocketChannel sc, SocketChannel out){
+    public Response(SocketChannel sc, SocketChannel out, SelectionKey key){
         request = sc;
         response = sc;
+        this.key = key;
     }
 
     public void run(){
@@ -32,8 +35,13 @@ public class Response implements Run{
     private String readRequest() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int len = request.read(buffer);
-        StringBuilder res = new StringBuilder();
+        //client abort error, close channel
+        if(len <= 0) {
+            HTTPLibrary.closeChannel(key, request);
+            return null;
+        }
 
+        StringBuilder res = new StringBuilder();
         while(len > 0) {
             res.append(new String(buffer.array(), 0, len));
             len = request.read(buffer);
@@ -56,6 +64,11 @@ public class Response implements Run{
         try {
 
             String message = readRequest();
+
+            //error message, return
+            if(message == null || message.length() == 0) {
+                return;
+            }
 
             //Get head and body
             String[] paras = HTTPLibrary.getHeadAndBody(message);
