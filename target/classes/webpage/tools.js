@@ -2,21 +2,12 @@
 
 //this js control tool bar behavior
 var tools = {
-    //flag = 0(index), 1(blogs), 2(About)
-    flag : 0,
     // run after full load
-    init: function() {
-        //init variables
-        this.time = document.getElementById("time");
-        //rate text(p)
-        this.rate = document.getElementById("rate");
-        
-        //bind getRate button
-        document.getElementById("getRate").addEventListener("click", function() {
-            tools.getRate();
-        }, false);
-
-        this.getRate();
+    init: function(pre) {
+        //save pre HTML element
+        this.pre = pre;
+        //load Rate tool
+        this.loadRate();
     },
 
     //get Rate function
@@ -35,6 +26,32 @@ var tools = {
             }
         }
         xmlhttp.open("GET","/json?id=rate",true);
+        xmlhttp.send();
+    },
+
+    //load exchange rate tool
+    loadRate: function() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState == 4){
+                //update rate
+                var text = xmlhttp.responseText;
+                
+                //Add rate tools
+                tools.pre.insertAdjacentHTML('afterend', text);;
+                //init variables
+                tools.time = document.getElementById("time");
+                //rate text(p)
+                tools.rate = document.getElementById("rate");
+                
+                //bind getRate button
+                document.getElementById("getRate").addEventListener("click", function() {
+                    tools.getRate();
+                }, false);
+                tools.getRate();
+            }
+        }
+        xmlhttp.open("GET","/tools/rate.html", true);
         xmlhttp.send();
     }
 }
