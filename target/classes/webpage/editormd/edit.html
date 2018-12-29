@@ -1,81 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-        <!-- Editor.md File-->
-        <link rel="stylesheet" href="editormd.css" />
-        <script src="editormd.min.js"></script>
-        <!-- My JS File -->
-        <script src="edit.js"></script>
-        <script src="../view.js"></script>
-        <!-- My CSS File -->
-        <link rel="stylesheet" type="text/css" href="../index.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <!-- Gramma Highlight-->
-        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai-sublime.min.css" rel="stylesheet">
-    </head>
-    <body>
-    <!-- body background="background.png" -->
-        <div class="page">
-            <div class="topping">
-                <img src="../topping.jpg" />
-            </div>
-            <!--Navi Bar -->
-            <nav class="navbar navbar-inverse" role="navigation">
-                <div class="navbar-header">
-                    <a class="navbar-brand">Yifu' website</a>
-                </div>
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="active" id="goIndex"><a href="#">Index</a></li>
-                        <li id="goBlog"><a href="#">Blog</a></li>
-                        <li id="goAbout"><a href="#">About</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                DropdownTest
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">a</a></li>
-                                <li><a href="#">b</a></li>
-                                <li><a href="#">c</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">da</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">dda</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div align="left" style="float:left">
-                <form>
-                    FileName:<br>
-                    <input type="text" title="new" id="titletext">
-                    <br>
-                </form>
-            </div>
-            <div sytle="margin-left: 100px">
-                <button id = "save" class="btn btn-default">Save</button>
-            </div>
-            <div id="editor">
-                <textarea style="display:none;">
-                </textarea>
-            </div>
-            <div id="test">
-                <p id="testblock">aaaaaaaaa</p>    
-            </div>
-        </div>
-
-        <script>
-            view.init();
-            edit.init();
-        </script>
-
-    </body>
-</html>
+<div align="left" style="float:left">
+    <form>
+        FileName:<br>
+        <input type="text" title="new" id="titletext">
+        <br>
+    </form>
+</div>
+<div sytle="margin-left: 100px">
+    <button id = "save" class="btn btn-default">Save</button>
+</div>
+<div id="editor">
+    <textarea style="display:none;">
+    </textarea>
+</div>
+<div id="test">
+    <p id="testblock">aaaaaaaaa</p>    
+</div>
+<!-- Editor.md File-->
+<link rel="stylesheet" href="editormd/editormd.css" />
+<script src="editormd/editormd.min.js"></script>

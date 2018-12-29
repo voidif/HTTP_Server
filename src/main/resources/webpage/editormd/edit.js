@@ -1,7 +1,24 @@
 "use strict";
 
 var edit = {
-    init: function() {
+    init: function(container) {
+        //save container
+        this.container = container;
+        //get edit html
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState == 4){
+                //update index value
+                var html = xmlhttp.responseText;
+                edit.dispaly(html);
+            }
+        }
+        xmlhttp.open("GET","/editormd/edit.html",true);
+        xmlhttp.send();
+    },
+
+    dispaly: function(html) {
+        this.container.innerHTML = html;
         //save button
         this.saveButton = document.getElementById("save");
         //test
@@ -9,14 +26,21 @@ var edit = {
         //title text
         this.titleText = document.getElementById("titletext");
 
+        //bind click event
+        this.saveButton.addEventListener("click", function() {
+            edit.save();
+        }, false);
+
+        //create editor
         this.editor = editormd("editor", {
             width   : "100%",
             height  : 800,
             syncScrolling : "single",
-            path    : "lib/"
+            path    : 'editormd/lib/'
         });
 
-        editormd.loadScript("languages/en", function() {
+        //change language
+        editormd.loadScript("editormd/languages/en", function() {
             edit.editor.lang = editormd.defaults.lang;
                         
             // 只重建涉及语言包的部分，如工具栏、弹出对话框等
@@ -31,11 +55,6 @@ var edit = {
         // lang = value;
         // console.log(lang, value, editormd.defaults.lang);                        
         });
-
-        
-        this.saveButton.addEventListener("click", function() {
-            edit.save();
-        }, false);
     },
 
     save: function() {

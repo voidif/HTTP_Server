@@ -9,6 +9,8 @@ var view = {
         this.flag = 0;
         //maindisplay window(div)
         this.maindispaly = document.getElementById("maindisplay");
+        //container window(div)
+        this.container = document.getElementById("container");
         //navi bar buttons
         this.goIndex = document.getElementById("goIndex");
         this.goBlog = document.getElementById("goBlog");
@@ -64,6 +66,22 @@ var view = {
         blogsDiv.setAttribute("class", "list-group");
         this.maindispaly.appendChild(blogsDiv);
 
+        //add new blog button
+        var addBlogA = document.createElement("a");
+        addBlogA.setAttribute("class", "list-group-item");
+        //add new blog click event
+        addBlogA.addEventListener("click", function() {
+            view.flag = -1;
+            edit.init(view.container);
+        }, false);
+        var addBlog = document.createElement("h4");
+        addBlog.setAttribute("class", "list-group-item-heading");
+        addBlog.innerHTML = "new blog";
+
+        addBlogA.appendChild(addBlog);
+        blogsDiv.appendChild(addBlogA);
+
+        //load blogs 
         var blogs = blogJSON.blogs;
         for (var i = 0, len = blogs.length; i < len; i++) { 
             var blogA = document.createElement("a");
