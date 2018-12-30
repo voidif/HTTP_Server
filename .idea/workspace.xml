@@ -75,7 +75,7 @@
     <session id="492428270">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="31" />
+          <entry key="project.closed" value="32" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="5" />
@@ -86,8 +86,8 @@
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.open.time.9" value="9" />
-          <entry key="project.opened" value="32" />
+          <entry key="project.open.time.9" value="10" />
+          <entry key="project.opened" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -627,12 +627,13 @@
       <workItem from="1545935362894" duration="8050000" />
       <workItem from="1545977834033" duration="6550000" />
       <workItem from="1546019472761" duration="22320000" />
-      <workItem from="1546106554341" duration="2834000" />
+      <workItem from="1546106554341" duration="3790000" />
+      <workItem from="1546128104586" duration="603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134625000" />
+    <option name="totallyTimeSpent" value="136184000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -645,18 +646,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-279" width="1096" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" weight="0.253861" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Capture Tool" order="4" />
-      <window_info x="1650" y="17" width="271" height="1025" id="Structure" order="5" sideWeight="0.32973894" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
+      <window_info active="true" x="1646" y="1" width="271" height="1025" id="Structure" order="5" sideWeight="0.32973894" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
       <window_info id="Favorites" order="6" sideWeight="0.6702611" side_tool="true" weight="0.253861" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973894" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3172531" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3172531" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
