@@ -6,7 +6,9 @@ var view = {
     // run after full load
     init: function() {
         //flag = 0(index), 1(blogs), 2(About)
-        this.flag = 0;
+        this.flag = -1;
+        //reload = 0(no need to reload tools), 1(need reload tools)
+        this.reload = 1;
         //maindisplay window(div)
         this.maindispaly = document.getElementById("maindisplay");
         //container window(div)
@@ -18,44 +20,32 @@ var view = {
 
         //bind navi bar buttons
         this.goIndex.addEventListener("click", function() {
-            view.jumpToIndex();
+            view.switchView(0);
         }, false);
         this.goBlog.addEventListener("click", function() {
-            view.jumpToBlog();
+            view.switchView(1);
         }, false);
+
+        //load maindisplayer and tools
+        this.switchView(0);
     },
 
     //jump to about page
 
     //jump to index page
     jumpToIndex: function() {
-        //if already in index page, return
-        if (this.flag == 0) {
-            return;
-        }
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if (xmlhttp.readyState == 4){
                 //update index value
                 var html = xmlhttp.responseText;
                 view.maindispaly.innerHTML = html;
-                view.flag = 0;
-                view.setNaviBarHighlight(0);
             }
         }
         xmlhttp.open("GET","/index/content.html",true);
         xmlhttp.send();
     },
 
-    //jump to blogs page
-    jumpToBlog: function () {
-        //if already in blogs page, return
-        if (this.flag == 1) {
-            return;
-        }
-        this.getBlogList();
-        this.flag = 1;
-    },
 
     //Display blogs page according to blogs JSON object
     displayBlog: function (blogJSON) {
@@ -71,7 +61,9 @@ var view = {
         addBlogA.setAttribute("class", "list-group-item");
         //add new blog click event
         addBlogA.addEventListener("click", function() {
+            //view changed
             view.flag = -1;
+            view.reload = 1;
             edit.init(view.container);
         }, false);
         var addBlog = document.createElement("h4");
@@ -127,12 +119,11 @@ var view = {
             </div>
             */
         }
-        this.setNaviBarHighlight(1);
     },
 
 
-    //get Blog list
-    getBlogList: function() {
+    //get Blog list and jump to blog page
+    jumpToBlog: function() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if (xmlhttp.readyState == 4){
@@ -171,6 +162,7 @@ var view = {
     },
 
     //Blog Title Click Event
+    //view changed
     readBlog: function(event) {
 
         var xmlhttp = new XMLHttpRequest();
@@ -199,6 +191,52 @@ var view = {
         var url = event.target.getAttribute("blogurl");
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
+    },
 
+    //changeView based on flag and reload
+    switchView: function(newFlag) {
+        if (this.reload == 1) {
+            this.reloadView();
+        }
+        if(this.flag != newFlag) {
+            this.flag = newFlag;
+            switch (this.flag) {
+                case 0: this.jumpToIndex();
+                break;
+                case 1: this.jumpToBlog();
+                break;
+                case 2: this.jumpToAbout();
+                break;
+            }
+            this.setNaviBarHighlight(this.flag);
+        }
+        
+    },
+
+    //reload container view, add maindisplayer div and tools div
+    reloadView: function() {
+        //maindisplayer
+        var maindispaly = document.createElement("div");
+        maindispaly.setAttribute("class", "col-md-8");
+        maindispaly.setAttribute("id", "maindisplay");
+
+        var tools = document.createElement("div");
+        tools.setAttribute("class", "col-md-4");
+        tools.setAttribute("id", "tools");
+        // <div class="col-md-8" id="maindisplay"></div>
+        // <div class="col-md-4"></div>
+        
+        this.maindispaly = maindispaly;
+        this.tools = tools;
+
+        this.container.innerHTML = "";
+        this.container.appendChild(maindispaly);
+        this.container.appendChild(tools);
+
+        //set reload flag variable
+        this.reload = 0;
+
+        //load tools view
+        tool.init();
     }
 }
