@@ -13,14 +13,22 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class CreateBlog {
-    private static final String srcRelativePath = "../../src/main/resources/webpage/blogs";
+    private static final String srcRelativePath = "/src/main/resources/webpage/blogs";
     private static final String targetRelativePath = "webpage/blogs";
 
+    public static void main(String[] args) {
+        File tmp = new File(CreateBlog.class.getClassLoader().
+                getResource("").getPath());
+        String toFilePath = tmp.getParent().replaceAll("\\\\", "/")
+                + srcRelativePath;
+        System.out.println(toFilePath);
+    }
     /**
-     *
-     * @param response
-     * @param url
-     * @param body
+     * Storage the blog to local file system. The data is from the json file transferd
+     * from the web page.
+     * @param response  HTTP response to write
+     * @param url request url
+     * @param body POST method body message
      * @throws IOException
      */
     public static void storage(SocketChannel response, String url, String body) throws IOException {
@@ -89,8 +97,10 @@ public class CreateBlog {
      * Transfer the file from target path to src path
      */
     private static void transferFile(File[] sourceFile) throws IOException {
-        String toFilePath = CreateBlog.class.getClassLoader().
-                getResource(srcRelativePath).getPath();
+        File tmp = new File(CreateBlog.class.getClassLoader().
+                getResource("").getPath());
+        String toFilePath = tmp.getParentFile().getParent().replaceAll("\\\\", "/")
+                + srcRelativePath;
         for(File tmpFile : sourceFile) {
             File to = new File(toFilePath + "/" + tmpFile.getName());
             Files.copy(tmpFile.toPath(), to.toPath());
