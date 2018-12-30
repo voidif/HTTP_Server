@@ -2,6 +2,8 @@
 
 var edit = {
     init: function(container) {
+        //file name that will storage in the server
+        this.fileName = "";
         //save container
         this.container = container;
         //get edit html
@@ -24,7 +26,9 @@ var edit = {
         //test
         this.testBlock = document.getElementById("testblock");
         //title text
-        this.titleText = document.getElementById("titletext");
+        this.titleText = document.getElementById("title");
+        //abstract text
+        this.abstractText = document.getElementById("abstract");
 
         //bind click event
         this.saveButton.addEventListener("click", function() {
@@ -69,8 +73,10 @@ var edit = {
 
         //get post message
         var msg = {
-            title : this.titleText.value + ".md",
-            content : this.editor.getMarkdown()
+            title: this.titleText.value,
+            abstract: this.abstractText.value,
+            content: this.editor.getMarkdown(),
+            file: this.fileName
         }
         var msgText = JSON.stringify(msg);
         xmlhttp.open("POST","/", true);

@@ -6,13 +6,13 @@
 	<div id="tools"/>
 ```
 
-以及flag标志位
+flag标志位，控制maindisplayer显示模式
 ```
 0:index
 1:Blog
 2:About
 ```
-另设reload标志位
+另设reload标志位，控制是否reload工具栏（tools div）
 ```
 0:只需要reload maindisplayer的内容
 1:需要reload整个container内容
