@@ -20,20 +20,31 @@ public class CreateBlog {
      * @throws IOException
      */
     public static void storage(SocketChannel response, String url, String body) throws IOException {
+//        var msg = {
+//                title: this.titleText.value,
+//                abstract: this.abstractText.value,
+//                content: this.editor.getMarkdown(),
+//                file: this.fileName
+//        }
         JSONObject paras = new JSONObject(body);
         String blogTitle = (String)paras.get("title");
+        String blogAbstract = (String)paras.get("title");
+        String blogContent = (String)paras.get("title");
+        String blogFile = (String)paras.get("file");
 
-        //create new file
+        //create new blog markdown file
         String filePath = CreateBlog.class.getClassLoader().getResource(targetRelativePath).getPath();
         File file = createFile(filePath + "/" + blogTitle);
 
-        byte[] blogContent = ((String)paras.get("content")).getBytes();
+        byte[] byteArray = blogContent.getBytes();
 
         //write blog content
         FileOutputStream out = new FileOutputStream(file);
-        out.write(blogContent);
+        out.write(byteArray);
         out.flush();
         out.close();
+
+        //write blog json file with the same name
 
         //test
         transferFile();
@@ -63,5 +74,9 @@ public class CreateBlog {
 
     private static void transferFile() {
 
+    }
+
+    private static String calculateFileName(String title) {
+        return null;
     }
 }
