@@ -147,8 +147,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controller/PostService/CreateBlog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+            <state relative-caret-position="550">
+              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -628,12 +628,12 @@
       <workItem from="1545977834033" duration="6550000" />
       <workItem from="1546019472761" duration="22320000" />
       <workItem from="1546106554341" duration="3790000" />
-      <workItem from="1546128104586" duration="1767000" />
+      <workItem from="1546128104586" duration="2156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137348000" />
+    <option name="totallyTimeSpent" value="137737000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -646,18 +646,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-279" width="1096" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="0" sideWeight="0.6702611" side_tool="true" type="FLOATING" weight="0.253861" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" x="1646" y="1" width="271" height="1025" id="Structure" order="5" sideWeight="0.32973894" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
+      <window_info x="1646" y="1" width="271" height="1025" id="Structure" order="5" sideWeight="0.32973894" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
       <window_info id="Favorites" order="6" sideWeight="0.6702611" side_tool="true" weight="0.253861" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973894" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3172531" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26901248" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1047,8 +1046,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/PostService/CreateBlog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+        <state relative-caret-position="550">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

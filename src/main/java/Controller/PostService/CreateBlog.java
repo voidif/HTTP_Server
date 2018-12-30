@@ -12,6 +12,13 @@ public class CreateBlog {
     private static final String srcRelativePath = "../../src/main/resources/webpage/blogs";
     private static final String targetRelativePath = "webpage/blogs";
 
+    /**
+     *
+     * @param response
+     * @param url
+     * @param body
+     * @throws IOException
+     */
     public static void storage(SocketChannel response, String url, String body) throws IOException {
         JSONObject paras = new JSONObject(body);
         String blogTitle = (String)paras.get("title");

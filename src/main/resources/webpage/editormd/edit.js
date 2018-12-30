@@ -69,7 +69,7 @@ var edit = {
 
         //get post message
         var msg = {
-            title : this.titleText.value + ".md",
+            title : this.titleText.value,
             content : this.editor.getMarkdown()
         }
         var msgText = JSON.stringify(msg);
