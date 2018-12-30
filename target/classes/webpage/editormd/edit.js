@@ -68,6 +68,7 @@ var edit = {
                 //update page dispaly
                 var text = xmlhttp.responseText;
                 alert(text);
+                //this.fileName = text.file;
             }
         }
 

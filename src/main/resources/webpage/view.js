@@ -77,7 +77,7 @@ var view = {
         var blogs = blogJSON.blogs;
         for (var i = 0, len = blogs.length; i < len; i++) { 
             var blogA = document.createElement("a");
-            blogA.setAttribute("blogurl", blogs[i].url);
+            blogA.setAttribute("blogurl", blogs[i].url + blogs[i].file);
             blogA.setAttribute("class", "list-group-item");
             //add title click event
             blogA.addEventListener("click", function() {
@@ -92,7 +92,7 @@ var view = {
             var blogAbstract = document.createElement("p");
             blogAbstract.setAttribute("blogurl", blogs[i].url);
             blogAbstract.setAttribute("class", "list-group-item-text");
-            blogAbstract.innerHTML = "Test";
+            blogAbstract.innerHTML = blogs[i].abstract;
 
             blogA.appendChild(blogTitle);
             blogA.appendChild(blogAbstract);

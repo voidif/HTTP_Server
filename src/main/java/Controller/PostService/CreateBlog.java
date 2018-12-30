@@ -40,13 +40,34 @@ public class CreateBlog {
 //        }
 
         JSONObject paras = new JSONObject(body);
-        String blogTitle = (String)paras.get("title");
-        String blogAbstract = (String)paras.get("abstract");
-        String blogContent = (String)paras.get("content");
         String blogFile = (String)paras.get("file");
+
+        //if file is "", create a new one
+        if(blogFile == "") {
+            writeNewBlog(paras);
+        } else {
+            //else modify existed one
+        }
+
+        //write back HTTP response
+        String head = "HTTP/1.1 200 OK" + "\r\n" +
+                "\r\n";
+
+        String message = head + "success!";
+        HTTPLibrary.writeString(response, message.getBytes());
+    }
+
+    /**
+     * This method is invoked for create a new blog file with json file
+     */
+    private static void writeNewBlog(JSONObject paras) throws IOException {
+        String blogTitle = (String)paras.get("title");
+        String blogContent = (String)paras.get("content");
+
 
         //get md file name and json file name
         String mdName = generateDateName(blogTitle, ".md");
+        paras.put("file", mdName);
         String jsonName = mdName.substring(0, mdName.length() - 2) + "json";
         //create new blog markdown file
         String filePath = CreateBlog.class.getClassLoader().
@@ -59,7 +80,13 @@ public class CreateBlog {
         out.flush();
         out.close();
 
-        //write blog json file with the same name
+        //JSON Format
+//        var msg = {
+//                title: this.titleText.value,
+//                abstract: this.abstractText.value,
+//                file: this.fileName
+//        }
+        //write blog json file with the same name but different suffix
         File jsonFile = createFile(filePath + "/" + jsonName);
         paras.remove("content");
         byteArray = paras.toString().getBytes();
@@ -69,16 +96,14 @@ public class CreateBlog {
         out.close();
         //transfer file
         transferFile(new File[]{mdFile, jsonFile});
-
-
-        //write back HTTP response
-        String head = "HTTP/1.1 200 OK" + "\r\n" +
-                "\r\n";
-
-        String message = head + "success!";
-        HTTPLibrary.writeString(response, message.getBytes());
     }
 
+    /**
+     * Create a new file with given file path
+     * @param destFileName dst file path
+     * @return File Object
+     * @throws IOException
+     */
     private static File createFile(String destFileName) throws IOException{
         File file = new File(destFileName);
         //if file exist or file is a directory or parent folder is not existed
