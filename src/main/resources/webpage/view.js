@@ -77,7 +77,7 @@ var view = {
         var blogs = blogJSON.blogs;
         for (var i = 0, len = blogs.length; i < len; i++) { 
             var blogA = document.createElement("a");
-            blogA.setAttribute("blogurl", blogs[i].url + blogs[i].file);
+            blogA.setAttribute("blogurl", blogs[i].url);
             blogA.setAttribute("class", "list-group-item");
             //add title click event
             blogA.addEventListener("click", function() {
@@ -137,30 +137,6 @@ var view = {
         xmlhttp.send();
     },
 
-    //Set navi bar highlight
-    setNaviBarHighlight: function(index) {
-        switch (index) {
-            case 0: {
-                this.goIndex.setAttribute("class", "active");
-                this.goBlog.setAttribute("class", "inactive");
-                this.goAbout.setAttribute("class", "inactive");
-                break;
-            }
-            case 1: {
-                this.goIndex.setAttribute("class", "inactive");
-                this.goBlog.setAttribute("class", "active");
-                this.goAbout.setAttribute("class", "inactive");
-                break;
-            }
-            case 2: {
-                this.goIndex.setAttribute("class", "inactive");
-                this.goBlog.setAttribute("class", "inactive");
-                this.goAbout.setAttribute("class", "active");
-                break;
-            }
-        }
-    },
-
     //Blog Title Click Event
     //view changed
     readBlog: function(event) {
@@ -189,9 +165,36 @@ var view = {
             }
         }
         var url = event.target.getAttribute("blogurl");
+        // console.log(url);
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     },
+
+    //Set navi bar highlight
+    setNaviBarHighlight: function(index) {
+        switch (index) {
+            case 0: {
+                this.goIndex.setAttribute("class", "active");
+                this.goBlog.setAttribute("class", "inactive");
+                this.goAbout.setAttribute("class", "inactive");
+                break;
+            }
+            case 1: {
+                this.goIndex.setAttribute("class", "inactive");
+                this.goBlog.setAttribute("class", "active");
+                this.goAbout.setAttribute("class", "inactive");
+                break;
+            }
+            case 2: {
+                this.goIndex.setAttribute("class", "inactive");
+                this.goBlog.setAttribute("class", "inactive");
+                this.goAbout.setAttribute("class", "active");
+                break;
+            }
+        }
+    },
+
+
 
     //changeView based on flag and reload
     switchView: function(newFlag) {
