@@ -53,7 +53,7 @@ public class Blog implements JSONRequest{
             }
             result.put("blogs", array);
         }
-        System.out.println(result.toString());
+        //System.out.println(result.toString());
         return result;
     }
 }

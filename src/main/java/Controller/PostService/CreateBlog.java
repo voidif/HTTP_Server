@@ -43,7 +43,7 @@ public class CreateBlog {
         String blogFile = (String)paras.get("file");
 
         //if file is "", create a new one
-        if(blogFile == "") {
+        if(blogFile.equals("")) {
             writeNewBlog(paras);
         } else {
             //else modify existed one
