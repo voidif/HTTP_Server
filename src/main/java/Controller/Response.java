@@ -2,7 +2,7 @@ package Controller;
 
 import Controller.GetService.JSON.JSONRequestHelper;
 import Controller.GetService.StaticRequest;
-import Controller.PostService.CreateBlog;
+import Controller.PostService.BlogStorage;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -96,7 +96,7 @@ public class Response implements Run{
                 }
             } else {
                 //POST
-                CreateBlog.storage(response, url, body);
+                BlogStorage.storage(response, url, body);
             }
             response.close();
         } catch (Exception e) {

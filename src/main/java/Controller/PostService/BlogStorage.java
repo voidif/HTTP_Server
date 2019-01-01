@@ -8,16 +8,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class CreateBlog {
+public class BlogStorage {
     private static final String srcRelativePath = "/src/main/resources/webpage/blogs";
     private static final String targetRelativePath = "webpage/blogs";
 
     public static void main(String[] args) {
-        File tmp = new File(CreateBlog.class.getClassLoader().
+        File tmp = new File(BlogStorage.class.getClassLoader().
                 getResource("").getPath());
         String toFilePath = tmp.getParent().replaceAll("\\\\", "/")
                 + srcRelativePath;
@@ -46,7 +46,7 @@ public class CreateBlog {
         if(blogFile.equals("")) {
             writeNewBlog(paras);
         } else {
-            //else modify existed one
+            modifyBlog(paras, blogFile);
         }
 
         //write back HTTP response
@@ -58,19 +58,38 @@ public class CreateBlog {
     }
 
     /**
-     * This method is invoked for create a new blog file with json file
+     * This method is invoked for modify a existed blog file with json object
+     * @param paras
+     * @throws IOException
+     */
+    private static void modifyBlog(JSONObject paras, String mdName) throws IOException {
+        writeFile(paras, mdName);
+    }
+
+    /**
+     * This method is invoked for create a new blog file with json object
      */
     private static void writeNewBlog(JSONObject paras) throws IOException {
         String blogTitle = (String)paras.get("title");
+        String mdName = generateDateName(blogTitle, ".md");
+        paras.put("file", mdName);
+        writeFile(paras, mdName);
+    }
+
+    /**
+     * Write a new file with specified file name, delete the old one if existed
+     * @param paras The content to write
+     * @param mdName The markDown file name
+     */
+    private static void writeFile(JSONObject paras, String mdName) throws IOException {
         String blogContent = (String)paras.get("content");
 
 
         //get md file name and json file name
-        String mdName = generateDateName(blogTitle, ".md");
-        paras.put("file", mdName);
+
         String jsonName = mdName.substring(0, mdName.length() - 2) + "json";
         //create new blog markdown file
-        String filePath = CreateBlog.class.getClassLoader().
+        String filePath = BlogStorage.class.getClassLoader().
                 getResource(targetRelativePath).getPath();
         File mdFile = createFile(filePath + "/" + mdName);
         byte[] byteArray = blogContent.getBytes();
@@ -99,20 +118,22 @@ public class CreateBlog {
     }
 
     /**
-     * Create a new file with given file path
+     * Create a new file with given file path, if there is an old, delete it
      * @param destFileName dst file path
      * @return File Object
      * @throws IOException
      */
     private static File createFile(String destFileName) throws IOException{
         File file = new File(destFileName);
-        //if file exist or file is a directory or parent folder is not existed
+        //if file is a directory or parent folder is not existed
         //throw exception
-        if(file.exists() ||
-                destFileName.endsWith(File.separator) ||
+        if(destFileName.endsWith(File.separator) ||
                 !file.getParentFile().exists()) {
             throw new IOException();
         } else {
+            if(file.exists()) {
+                file.delete();
+            }
             //file.createNewFile();
         }
         return file;
@@ -122,13 +143,13 @@ public class CreateBlog {
      * Transfer the file from target path to src path
      */
     private static void transferFile(File[] sourceFile) throws IOException {
-        File tmp = new File(CreateBlog.class.getClassLoader().
+        File tmp = new File(BlogStorage.class.getClassLoader().
                 getResource("").getPath());
         String toFilePath = tmp.getParentFile().getParent().replaceAll("\\\\", "/")
                 + srcRelativePath;
         for(File tmpFile : sourceFile) {
             File to = new File(toFilePath + "/" + tmpFile.getName());
-            Files.copy(tmpFile.toPath(), to.toPath());
+            Files.copy(tmpFile.toPath(), to.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
 
     }

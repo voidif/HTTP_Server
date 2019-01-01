@@ -64,7 +64,7 @@ var view = {
             //view changed
             view.flag = -1;
             view.reload = 1;
-            edit.init(view.container);
+            edit.init(view.container, "");
         }, false);
         var addBlog = document.createElement("h4");
         addBlog.setAttribute("class", "list-group-item-heading");
@@ -159,8 +159,14 @@ var view = {
                       return hljs.highlightAuto(code).value;
                     }
                   });
+                var url = xmlhttp.responseURL;
                 var text = xmlhttp.responseText;
                 view.maindispaly.innerHTML = marked(text);
+                view.maindispaly.insertAdjacentHTML("afterbegin", 
+                    "<button class=\"btn btn-default\" id=\"edit\">Edit</button>");
+                document.getElementById("edit").addEventListener("click", function() {
+                    edit.init(view.container, view.getBlogFileName(url), text);
+                }, false);
                 view.flag = -1;
             }
         }
@@ -168,6 +174,11 @@ var view = {
         // console.log(url);
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
+    },
+
+    //support function
+    getBlogFileName: function() {
+
     },
 
     //Set navi bar highlight

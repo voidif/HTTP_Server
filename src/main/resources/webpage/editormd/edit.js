@@ -1,11 +1,13 @@
 "use strict";
 
 var edit = {
-    init: function(container) {
+    init: function(container, fileName, textareaValue) {
         //file name that will storage in the server
-        this.fileName = "";
+        this.fileName = fileName;
         //save container
         this.container = container;
+        //editor default value
+        this.textareaValue = textareaValue;
         //get edit html
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
@@ -29,6 +31,12 @@ var edit = {
         this.titleText = document.getElementById("title");
         //abstract text
         this.abstractText = document.getElementById("abstract");
+        //textarea text
+        this.textarea = document.getElementById("textarea");
+        //set default value
+        if(this.textareaValue != undefined) {
+            textarea.innerHTML = textarea;
+        }
 
         //bind click event
         this.saveButton.addEventListener("click", function() {
