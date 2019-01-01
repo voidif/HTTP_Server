@@ -62,8 +62,6 @@ var view = {
         //add new blog click event
         addBlogA.addEventListener("click", function() {
             //view changed
-            view.flag = -1;
-            view.reload = 1;
             edit.init(view.container, "");
         }, false);
         var addBlog = document.createElement("h4");
@@ -165,6 +163,7 @@ var view = {
                 view.maindispaly.insertAdjacentHTML("afterbegin", 
                     "<button class=\"btn btn-default\" id=\"edit\">Edit</button>");
                 document.getElementById("edit").addEventListener("click", function() {
+                    //view changed
                     edit.init(view.container, view.getBlogFileName(url), text);
                 }, false);
                 view.flag = -1;

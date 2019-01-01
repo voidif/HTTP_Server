@@ -2,6 +2,8 @@
 
 var edit = {
     init: function(container, fileName, textareaValue) {
+        view.reload = 1;
+        view.flag = -1;
         //file name that will storage in the server
         this.fileName = fileName;
         //save container
