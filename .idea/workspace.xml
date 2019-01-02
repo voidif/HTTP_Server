@@ -75,7 +75,7 @@
     <session id="492428270">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="36" />
+          <entry key="project.closed" value="37" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="6" />
@@ -494,7 +494,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546405403077" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546411936552" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../LeetCode" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -712,12 +712,12 @@
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
-      <window_info auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="4" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
+      <window_info active="true" auto_hide="true" content_ui="combo" x="1588" y="0" width="332" height="1040" id="Project" order="4" sideWeight="0.6702611" side_tool="true" type="FLOATING" visible="true" weight="0.253861" />
       <window_info x="1587" y="0" width="334" height="1040" id="Structure" order="5" sideWeight="0.32973894" side_tool="true" type="FLOATING" weight="0.253861" />
       <window_info id="Favorites" order="6" sideWeight="0.6702611" side_tool="true" weight="0.253861" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973894" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26901248" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26901248" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4370034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
