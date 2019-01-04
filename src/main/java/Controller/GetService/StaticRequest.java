@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Dealing with static file get request
@@ -68,6 +70,8 @@ public class StaticRequest {
             fis.close();
             return data;
         } catch (NullPointerException e) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");//设置日期格式
+            System.out.print(df.format(new Date()));// new Date()为获取当前系统时间
             System.out.println("No such file: " + url);
             return new byte[0];
         }
