@@ -178,7 +178,7 @@ var view = {
     //support function
     getBlogFileName: function() {
         //TODO
-        return "tesst";
+        return "test";
     },
 
     //Set navi bar highlight
