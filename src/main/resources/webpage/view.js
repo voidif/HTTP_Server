@@ -176,9 +176,9 @@ var view = {
     },
 
     //support function
-    getBlogFileName: function() {
-        //TODO
-        return "test";
+    getBlogFileName: function(url) {
+        var words = url.split('/');
+        return words[words.length() - 1];
     },
 
     //Set navi bar highlight
