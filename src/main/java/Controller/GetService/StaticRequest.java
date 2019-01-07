@@ -41,16 +41,16 @@ public class StaticRequest {
         }
         head.append("\r\n");
         //test
-        System.out.println(data.length);
         //write into response
-        String message = head.append(new String(data)).toString();
-        byte[] messageByte = message.getBytes();
-        System.out.println(messageByte.length);
+//        String message = head.append(new String(data)).toString();
+//        byte[] messageByte = message.getBytes();
+//        System.out.println(messageByte.length);
 //        byte[] headArray = head.toString().getBytes();
 //        byte[] message = new byte[headArray.length + data.length];
 //        System.arraycopy(headArray, 0, message, 0, headArray.length);
 //        System.arraycopy(data, 0, message, headArray.length, data.length);
-        HTTPLibrary.writeString(response, messageByte);
+        HTTPLibrary.writeString(response, head.toString().getBytes());
+        HTTPLibrary.writeString(response, data);
     }
 
     /**
