@@ -43,11 +43,12 @@ public class StaticRequest {
         //test
         System.out.println(data.length);
         //write into response
-        byte[] headArray = head.toString().getBytes();
-        byte[] message = new byte[headArray.length + data.length];
-        System.arraycopy(headArray, 0, message, 0, headArray.length);
-        System.arraycopy(data, 0, message, headArray.length, data.length);
-        HTTPLibrary.writeString(response, message);
+        String message = head.append(data.toString()).toString();
+//        byte[] headArray = head.toString().getBytes();
+//        byte[] message = new byte[headArray.length + data.length];
+//        System.arraycopy(headArray, 0, message, 0, headArray.length);
+//        System.arraycopy(data, 0, message, headArray.length, data.length);
+        HTTPLibrary.writeString(response, message.getBytes());
     }
 
     /**
