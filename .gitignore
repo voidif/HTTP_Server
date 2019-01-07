@@ -1,1 +1,11 @@
-.idea
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+#IDEA configure file
+/.idea/*
+
+#java class path
+/target/*
