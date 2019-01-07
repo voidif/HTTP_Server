@@ -62,7 +62,7 @@ public class BlogStorage {
         responseMessage.put("message", "success");
         responseMessage.put("file", paras.get("file"));
 
-        String message = head + "success!";
+        String message = head + responseMessage.toString();
         HTTPLibrary.writeString(response, message.getBytes());
     }
 

@@ -31,8 +31,6 @@ var edit = {
         this.container.innerHTML = html;
         //save button
         this.saveButton = document.getElementById("save");
-        //test
-        this.testBlock = document.getElementById("testblock");
         //title text
         this.titleText = document.getElementById("title");
         this.titleText.value = this.title;
@@ -83,7 +81,10 @@ var edit = {
             if (xmlhttp.readyState == 4){
                 //update page dispaly
                 var text = xmlhttp.responseText;
-                alert(text);
+                var json = JSON.parse(text);
+                edit.fileName = json.file;
+                var msg = json.message;
+                alert(msg);
                 //this.fileName = text.file;
             }
         }
