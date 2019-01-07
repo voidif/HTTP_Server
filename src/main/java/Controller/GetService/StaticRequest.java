@@ -40,6 +40,8 @@ public class StaticRequest {
             head.append("Content-Type: application/javascript" + "\r\n");
         }
         head.append("\r\n");
+        //test
+        System.out.println(data.length);
         //write into response
         byte[] headArray = head.toString().getBytes();
         byte[] message = new byte[headArray.length + data.length];
