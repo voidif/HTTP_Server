@@ -37,7 +37,7 @@ var edit = {
         this.textarea = document.getElementById("textarea");
         //set default value
         if(this.textareaValue != undefined) {
-            textarea.innerHTML = textarea;
+            this.textarea.innerHTML = this.textareaValue;
         }
 
         //bind click event
