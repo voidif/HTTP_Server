@@ -41,6 +41,7 @@ public class Blog implements JSONRequest{
                     FileInputStream input = new FileInputStream(tmp);
                     String jsonString = new String(input.readAllBytes());
                     //create a JSON array for single blogs
+                    System.out.println(jsonString);
                     JSONObject blog = new JSONObject(jsonString);
                     blog.put("url", PATH_PREFIX + blog.get("file"));
                     blog.remove("file");
