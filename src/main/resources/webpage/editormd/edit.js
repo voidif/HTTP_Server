@@ -1,7 +1,7 @@
 "use strict";
 
 var edit = {
-    init: function(container, fileName, textareaValue) {
+    init: function(container, title, abstract, fileName, textareaValue) {
         view.reload = 1;
         view.flag = -1;
         //file name that will storage in the server
@@ -10,6 +10,10 @@ var edit = {
         this.container = container;
         //editor default value
         this.textareaValue = textareaValue;
+        //title
+        this.title = title;
+        //abstract
+        this.abstract = abstract;
         //get edit html
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
@@ -31,8 +35,10 @@ var edit = {
         this.testBlock = document.getElementById("testblock");
         //title text
         this.titleText = document.getElementById("title");
+        this.titleText.value = this.title;
         //abstract text
         this.abstractText = document.getElementById("abstract");
+        this.abstractText.value = this.abstract;
         //textarea text
         this.textarea = document.getElementById("textarea");
         //set default value

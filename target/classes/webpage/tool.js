@@ -46,7 +46,7 @@ var tool = {
                 
                 //bind getRate button
                 document.getElementById("getRate").addEventListener("click", function() {
-                    tools.getRate();
+                    tool.getRate();
                 }, false);
                 tool.getRate();
             }

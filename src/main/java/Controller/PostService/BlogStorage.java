@@ -51,7 +51,16 @@ public class BlogStorage {
 
         //write back HTTP response
         String head = "HTTP/1.1 200 OK" + "\r\n" +
-                "\r\n";
+                "Content-Type: application/json" + "\r\n" + "\r\n";
+
+        //returned JSON format
+//        {
+//            message: success/fail;
+//            file: fileName
+//        }
+        JSONObject responseMessage = new JSONObject();
+        responseMessage.put("message", "success");
+        responseMessage.put("file", paras.get("file"));
 
         String message = head + "success!";
         HTTPLibrary.writeString(response, message.getBytes());

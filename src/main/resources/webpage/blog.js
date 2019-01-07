@@ -6,6 +6,8 @@ var blog = {
     //Blog Title Click Event
     //view changed
     readBlog: function(event) {
+        var index = event.target.getAttribute("index");
+        this.blogJSON = blogs.blogListJSON.blogs[index];
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
@@ -37,12 +39,14 @@ var blog = {
                 //     );
                 document.getElementById("edit").addEventListener("click", function() {
                     //view changed
-                    edit.init(view.container, blog.getBlogFileName(url), blog.text);
+                    edit.init(view.container, blog.blogJSON.title, blog.blogJSON.abstract, 
+                        blog.getBlogFileName(url), blog.text);
                 }, false);
                 view.flag = -1;
             }
         }
-        var url = event.target.getAttribute("blogurl");
+        
+        var url = this.blogJSON.url;
         // console.log(url);
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
@@ -52,11 +56,16 @@ var blog = {
     getBlogFileName: function(url) {
         var words = url.split('/');
         return words[words.length - 1];
-    },
+    }
+}
 
-        //Display blogs page according to blogs JSON object
-    displayBlog: function (blogJSON) {
 
+//variables that controls blog list 
+var blogs = {
+
+    //Display blogs page according to blogs JSON object
+    displayBlogList: function (blogJSON) {
+        this.blogListJSON = blogJSON;
 
         var blogsDiv = document.createElement("div");
         blogsDiv.setAttribute("class", "list-group");
@@ -70,59 +79,56 @@ var blog = {
         //add new blog click event
         addBlogA.addEventListener("click", function() {
             //view changed
-            edit.init(view.container, "");
+            edit.init(view.container, "", "", "", "");
         }, false);
-        var addBlog = document.createElement("h4");
-        addBlog.setAttribute("class", "list-group-item-heading");
-        addBlog.innerHTML = "new blog";
+        // var addBlog = document.createElement("p");
+        // addBlog.setAttribute("class", "list-group-item");
+        addBlogA.innerHTML = "new blog";
 
-        addBlogA.appendChild(addBlog);
+        // addBlogA.appendChild(addBlog);
         blogsDiv.appendChild(addBlogA);
 
         //load blogs 
         var blogs = blogJSON.blogs;
         for (var i = 0, len = blogs.length; i < len; i++) { 
+            var blogListItem = document.createElement("li");
+            blogListItem.setAttribute("class", "list-group-item");
+
+
             var blogA = document.createElement("a");
-            blogA.setAttribute("blogurl", blogs[i].url);
-            blogA.setAttribute("class", "list-group-item");
+            //blogA.setAttribute("blogurl", blogs[i].url);
+            //blogA.setAttribute("class", "list-group-item");
             //add title click event
-            blogA.addEventListener("click", function() {
+
+            var blogTitle = document.createElement("h4");
+            blogTitle.setAttribute("index", i);
+
+            blogTitle.innerHTML = blogs[i].title;
+            blogTitle.addEventListener("click", function() {
                 blog.readBlog(event);
             }, false);
 
-            var blogTitle = document.createElement("h4");
-            blogTitle.setAttribute("blogurl", blogs[i].url);
-            blogTitle.setAttribute("class", "list-group-item-heading");
-            blogTitle.innerHTML = blogs[i].title;
-
             var blogAbstract = document.createElement("p");
-            blogAbstract.setAttribute("blogurl", blogs[i].url);
-            blogAbstract.setAttribute("class", "list-group-item-text");
             blogAbstract.innerHTML = blogs[i].abstract;
 
             blogA.appendChild(blogTitle);
-            blogA.appendChild(blogAbstract);
-            blogsDiv.appendChild(blogA);
+
+            blogListItem.appendChild(blogA);
+            blogListItem.appendChild(blogAbstract);
+
+            blogsDiv.appendChild(blogListItem);
 
             //example HTML
             /*
             <div class="list-group">
-                <a href="1.html" class="list-group-item">
-                    <h4 class="list-group-item-heading">
-                        PDF文件迷思
-                    </h4>
-                    <p class="list-group-item-text">
-                        一个奇怪的问题， 从服务器上下载的pdf乱码， 传输方式如下
-                    </p>
-                </a>
-                <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">
-                        还没有Blog!
-                    </h4>
-                    <p class="list-group-item-text">
-                        还没有简介！
-                    </p>
-                </a>
+                <li class="list-group-item">
+                    <a href="#"><h4>页面标题实例<h4></a>
+                    <p>这是一个示例文本。这是一个示例文本。这是一个示例文本。这是一个示例文本。这是一个示例文本。</p>
+                </li>
+                <li class="list-group-item">
+                    <a href="#"><h4>页面标题实例<h4></a>
+                    <p>这是一个示例文本。这是一个示例文本。这是一个示例文本。这是一个示例文本。这是一个示例文本。</p>
+                </li>
             </div>
             */
         }

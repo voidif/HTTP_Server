@@ -58,7 +58,7 @@ var view = {
                 //update page dispaly
                 var text = xmlhttp.responseText;
                 var blogJSON = JSON.parse(text);
-                blog.displayBlog(blogJSON);
+                blogs.displayBlogList(blogJSON);
             }
         }
         xmlhttp.open("GET","/json?id=blog",true);
