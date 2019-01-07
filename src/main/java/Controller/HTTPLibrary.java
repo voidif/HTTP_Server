@@ -92,8 +92,13 @@ public class HTTPLibrary {
         //read from 0 and 1024 byte every time
 
         ByteBuffer block = ByteBuffer.wrap(msg);
-        int len = response.write(block);
-        System.out.println(len);
+        int len = msg.length;
+        int sendLen = 0;
+        //send byte
+        while(sendLen < len) {
+            sendLen += response.write(block);
+        }
+
         //response.close();
 
 //        while(offset < msg.length) {
