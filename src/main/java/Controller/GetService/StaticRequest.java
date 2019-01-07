@@ -31,9 +31,9 @@ public class StaticRequest {
         } else if (ext.equals("css")) {
             head.append("content-type: text/css; charset=utf-8" + "\r\n");
         } else if (ext.equals("jpg")) {
-            head.append("Content-Type: image/png" + "\r\n");
+            head.append("Content-Type: image/jpg" + "\r\n");
         } else if (ext.equals("png")) {
-            head.append("Content-Type: image/jpeg" + "\r\n");
+            head.append("Content-Type: image/png" + "\r\n");
         } else if (ext.equals("pdf")) {
             head.append("Content-Type: application/pdf; charset=utf-8" + "\r\n");
         } else if (ext.equals("js")) {
