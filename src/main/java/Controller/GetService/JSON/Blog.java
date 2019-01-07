@@ -31,13 +31,16 @@ public class Blog implements JSONRequest{
         if(blogPath.isDirectory()) {
             JSONArray array = new JSONArray();
             File[] blogs = blogPath.listFiles();
-            for(int i = 0; i < blogs.length; i = i + 2) {
+            for(int i = 0; i < blogs.length; i = i + 1) {
                 try {
                     /**
                      * for loaded JSON file format,
                      * see {@link Controller.PostService.CreateBlog#writeNewBlog(JSONObject)}
                      */
-                    File tmp = blogs[i].getName().endsWith("json")? blogs[i]: blogs[i + 1];
+                    if(! blogs[i].getName().endsWith("json")) {
+                        continue;
+                    }
+                    File tmp = blogs[i];
                     FileInputStream input = new FileInputStream(tmp);
                     String jsonString = new String(input.readAllBytes());
                     //create a JSON array for single blogs
