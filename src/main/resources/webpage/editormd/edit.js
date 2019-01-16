@@ -76,6 +76,11 @@ var edit = {
     },
 
     save: function() {
+        //Title and abstract can not be empty
+        if(this.titleText.value == "" || this.abstractText.value == "") {
+            alert("Title and abstract can not be empty!!!");
+            return;
+        }
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if (xmlhttp.readyState == 4){
