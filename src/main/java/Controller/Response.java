@@ -10,7 +10,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 
-public class Response implements Run{
+public class Response implements Runnable{
 
 
     private SocketChannel request;
@@ -24,7 +24,7 @@ public class Response implements Run{
     }
 
     public void run(){
-        Response();
+        responseMessage();
     }
 
     /**
@@ -37,7 +37,8 @@ public class Response implements Run{
         int len = request.read(buffer);
         //client abort error, close channel
         if(len <= 0) {
-            HTTPLibrary.closeChannel(key, request);
+            System.out.println(len);
+            //HTTPLibrary.closeChannel(key, request);
             return null;
         }
 
@@ -58,9 +59,9 @@ public class Response implements Run{
      * Second, request for a JSON message. In this case, url always begin with
      * /json?.
      *
-     * For POST, TODO
+     * For POST, we support post the blog to server function
      */
-    private void Response(){
+    private void responseMessage(){
 
         try {
 

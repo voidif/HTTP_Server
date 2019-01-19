@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class HTTP_Server {
+    static boolean test = true;
     public static void main(String[] args){
         init();
         ServerSocket serverSocket = null;
@@ -87,11 +88,17 @@ public class HTTP_Server {
      * NIO method
      */
     private static void clientAccept(SelectionKey key, Selector selector) throws IOException {
+//        if(!test) {
+//            return;
+//        }
+//        test = false;
+        System.out.println("accept!");
         ServerSocketChannel newSSC = (ServerSocketChannel)key.channel();
         SocketChannel sc = newSSC.accept();
 
         sc.configureBlocking(false);
         sc.register(selector, SelectionKey.OP_READ);
+
     }
 
     /**
@@ -100,8 +107,12 @@ public class HTTP_Server {
      * @throws IOException
      */
     private static void clientReadyToRead(SelectionKey key) throws IOException {
+        System.out.println(key.hashCode());
         SocketChannel sc = (SocketChannel)key.channel();
+
         Response response = new Response(sc, sc, key);
-        response.run();
+//        response.run();
+//        new Thread(response).start();
+        ThreadPool.getInstance().executeTask(response);
     }
 }

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.ByteBuffer;
+import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
@@ -96,8 +97,17 @@ public class HTTPLibrary {
         int sendLen = 0;
         //send byte
         while(sendLen < len) {
-            sendLen += response.write(block);
+            try {
+                sendLen += response.write(block);
+            } catch (ClosedChannelException e) {
+                System.out.println("fucked");
+                return;
+            }
+
         }
+
+//        closeChannel(response);
+
 
         //response.close();
 
@@ -125,6 +135,17 @@ public class HTTPLibrary {
     public static void closeChannel(SelectionKey key, SocketChannel sc) throws IOException {
         sc.close();
         key.cancel();
+        System.out.println("NIO BUG!");
+    }
+
+    /**
+     * In the case of client abnormal close connection, the read event
+     * may always occurs. we need to close channel manually
+     * @param sc socket channel
+     * @throws IOException
+     */
+    public static void closeChannel(SocketChannel sc) throws IOException {
+        sc.close();
         System.out.println("NIO BUG!");
     }
 }
