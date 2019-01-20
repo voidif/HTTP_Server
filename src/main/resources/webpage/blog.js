@@ -50,8 +50,8 @@ var blog = {
         
         var url = this.blogJSON.url;
         // console.log(url);
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+        // xmlhttp.open("GET", url, true);
+        // xmlhttp.send();
 
         net.get(url, function(xmlhttp) {
             //Parse markdown to HTML then update blog dispaly

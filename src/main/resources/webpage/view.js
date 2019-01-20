@@ -27,6 +27,9 @@ var view = {
         this.goBlog.addEventListener("click", function() {
             view.switchView(1);
         }, false);
+        this.goAbout.addEventListener("click", function() {
+            view.switchView(2);
+        }, false);
 
         //load maindisplayer and tools
         this.switchView(0);
