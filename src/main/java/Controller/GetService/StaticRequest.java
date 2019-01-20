@@ -26,7 +26,7 @@ public class StaticRequest {
         //head.append("Connection: keep-alive" + "\r\n");
         head.append("content-length: " + data.length + "\r\n");
         //looking the file extension
-        if (ext.equals("html")) {
+        if (ext.equals("html") || ext.equals("txt")) {
             head.append("Content-Type: text/html; charset=utf-8" + "\r\n");
         } else if (ext.equals("css")) {
             head.append("content-type: text/css; charset=utf-8" + "\r\n");
