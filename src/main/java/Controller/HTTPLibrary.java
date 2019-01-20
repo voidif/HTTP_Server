@@ -1,5 +1,8 @@
 package Controller;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandlerContext;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -89,6 +92,7 @@ public class HTTPLibrary {
      * @param response The socket channel to write
      * @param msg The data byte array
      */
+    @Deprecated
     public static void writeString(SocketChannel response, byte[] msg) throws IOException {
         //read from 0 and 1024 byte every time
 
@@ -106,23 +110,21 @@ public class HTTPLibrary {
 
         }
 
-//        closeChannel(response);
-
-
-        //response.close();
-
-//        while(offset < msg.length) {
-//            //put data into buffer
-//            len = Math.min(msg.length - offset, block.capacity());
-//            block.put(msg, offset, len);
-//            offset += len;
-//
-//            //read data from buffer, write it to channel
-//            block.flip();
-//            response.write(block);
-//            block.clear();
-//        }
     }
+
+    /**
+     * Read the message, put it into an netty ChannelHandlerContext
+     * @param response The channel to write
+     * @param msg The data byte array
+     */
+    public static void writeResponse(ChannelHandlerContext response, byte[] msg) {
+
+        ByteBuf resp = Unpooled.copiedBuffer(msg);
+        response.write(resp);
+        response.flush();
+        response.close();
+    }
+
 
 
     /**
@@ -132,6 +134,7 @@ public class HTTPLibrary {
      * @param sc socket channel
      * @throws IOException
      */
+    @Deprecated
     public static void closeChannel(SelectionKey key, SocketChannel sc) throws IOException {
         sc.close();
         key.cancel();
@@ -144,6 +147,7 @@ public class HTTPLibrary {
      * @param sc socket channel
      * @throws IOException
      */
+    @Deprecated
     public static void closeChannel(SocketChannel sc) throws IOException {
         sc.close();
         System.out.println("NIO BUG!");
