@@ -22,7 +22,7 @@ var net = {
                 recallfunction(xmlhttp);
             }
         }
-        var msgText = msg + POST_DELIMITER;
+        var msgText = msg + net.POST_DELIMITER;
         xmlhttp.open("POST", url, true);
         xmlhttp.send(msgText);
     }
