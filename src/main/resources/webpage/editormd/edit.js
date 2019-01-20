@@ -15,11 +15,12 @@ var edit = {
         //abstract
         this.abstract = abstract;
         //get edit html
-        var xmlhttp = new XMLHttpRequest();
+        
         net.get("/editormd/edit.html", function (xmlhttp) {
             var html = xmlhttp.responseText;
             edit.dispaly(html);
         })
+        // var xmlhttp = new XMLHttpRequest();
         // xmlhttp.onreadystatechange = function(){
         //     if (xmlhttp.readyState == 4){
         //         //update index value

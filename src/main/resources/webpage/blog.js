@@ -9,47 +9,83 @@ var blog = {
         var index = event.target.getAttribute("index");
         this.blogJSON = blogs.blogListJSON.blogs[index];
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState == 4){
-                //Parse markdown to HTML then update blog dispaly
-                marked.setOptions({
-                    renderer: new marked.Renderer(),
-                    gfm: true,
-                    tables: true,
-                    escaped : true,
-                    breaks: false,
-                    pedantic: false,
-                    sanitize: false,
-                    smartLists: true,
-                    smartypants: false,
-                    highlight: function (code) {
-                      return hljs.highlightAuto(code).value;
-                    }
-                  });
-                var url = xmlhttp.responseURL;
-                blog.text = xmlhttp.responseText;
+        
 
-                //edit button
-                var buttonString = "<button class=\"btn btn-default\" id=\"edit\">Edit</button>";
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function(){
+        //     if (xmlhttp.readyState == 4){
+        //         //Parse markdown to HTML then update blog dispaly
+        //         marked.setOptions({
+        //             renderer: new marked.Renderer(),
+        //             gfm: true,
+        //             tables: true,
+        //             escaped : true,
+        //             breaks: false,
+        //             pedantic: false,
+        //             sanitize: false,
+        //             smartLists: true,
+        //             smartypants: false,
+        //             highlight: function (code) {
+        //               return hljs.highlightAuto(code).value;
+        //             }
+        //           });
+        //         var url = xmlhttp.responseURL;
+        //         blog.text = xmlhttp.responseText;
 
-                view.setMaindisplay(buttonString + marked(blog.text));
-                // view.maindispaly.innerHTML = marked(text);
-                // view.maindispaly.insertAdjacentHTML("afterbegin", 
-                //     );
-                document.getElementById("edit").addEventListener("click", function() {
-                    //view changed
-                    edit.init(view.container, blog.blogJSON.title, blog.blogJSON.abstract, 
-                        blog.getBlogFileName(url), blog.text);
-                }, false);
-                view.flag = -1;
-            }
-        }
+        //         //edit button
+        //         var buttonString = "<button class=\"btn btn-default\" id=\"edit\">Edit</button>";
+
+        //         view.setMaindisplay(buttonString + marked(blog.text));
+        //         // view.maindispaly.innerHTML = marked(text);
+        //         // view.maindispaly.insertAdjacentHTML("afterbegin", 
+        //         //     );
+        //         document.getElementById("edit").addEventListener("click", function() {
+        //             //view changed
+        //             edit.init(view.container, blog.blogJSON.title, blog.blogJSON.abstract, 
+        //                 blog.getBlogFileName(url), blog.text);
+        //         }, false);
+        //         view.flag = -1;
+        //     }
+        // }
         
         var url = this.blogJSON.url;
         // console.log(url);
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
+
+        net.get(url, function(xmlhttp) {
+            //Parse markdown to HTML then update blog dispaly
+            marked.setOptions({
+                renderer: new marked.Renderer(),
+                gfm: true,
+                tables: true,
+                escaped : true,
+                breaks: false,
+                pedantic: false,
+                sanitize: false,
+                smartLists: true,
+                smartypants: false,
+                highlight: function (code) {
+                  return hljs.highlightAuto(code).value;
+                }
+              });
+            var url = xmlhttp.responseURL;
+            blog.text = xmlhttp.responseText;
+
+            //edit button
+            var buttonString = "<button class=\"btn btn-default\" id=\"edit\">Edit</button>";
+
+            view.setMaindisplay(buttonString + marked(blog.text));
+            // view.maindispaly.innerHTML = marked(text);
+            // view.maindispaly.insertAdjacentHTML("afterbegin", 
+            //     );
+            document.getElementById("edit").addEventListener("click", function() {
+                //view changed
+                edit.init(view.container, blog.blogJSON.title, blog.blogJSON.abstract, 
+                    blog.getBlogFileName(url), blog.text);
+            }, false);
+            view.flag = -1;
+        });
     },
 
     //support function

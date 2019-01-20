@@ -36,33 +36,50 @@ var view = {
 
     //jump to index page
     jumpToIndex: function() {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState == 4){
-                //update index value
-                var html = xmlhttp.responseText;
-                view.setMaindisplay(html);
-            }
-        }
-        xmlhttp.open("GET","/index/content.html",true);
-        xmlhttp.send();
+        net.get("/index/content.html", function(xmlhttp) {
+            //update index value
+            var html = xmlhttp.responseText;
+            view.setMaindisplay(html);
+        });
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function(){
+        //     if (xmlhttp.readyState == 4){
+        //         //update index value
+        //         var html = xmlhttp.responseText;
+        //         view.setMaindisplay(html);
+        //     }
+        // }
+        // xmlhttp.open("GET","/index/content.html",true);
+        // xmlhttp.send();
     },
 
 
 
     //get Blog list and jump to blog page
     jumpToBlog: function() {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState == 4){
-                //update page dispaly
-                var text = xmlhttp.responseText;
-                var blogJSON = JSON.parse(text);
-                blogs.displayBlogList(blogJSON);
-            }
-        }
-        xmlhttp.open("GET","/json?id=blog",true);
-        xmlhttp.send();
+        net.get("/json?id=blog", function(xmlhttp) {
+            //update page dispaly
+            var text = xmlhttp.responseText;
+            var blogJSON = JSON.parse(text);
+            blogs.displayBlogList(blogJSON);
+        });
+
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function(){
+        //     if (xmlhttp.readyState == 4){
+        //         //update page dispaly
+        //         var text = xmlhttp.responseText;
+        //         var blogJSON = JSON.parse(text);
+        //         blogs.displayBlogList(blogJSON);
+        //     }
+        // }
+        // xmlhttp.open("GET","/json?id=blog",true);
+        // xmlhttp.send();
+    },
+
+    jumpToAbout: function() {
+        alert("Not done yet!");
+        switchView(0);
     },
 
 
@@ -102,6 +119,7 @@ var view = {
         }
         if(this.flag != newFlag) {
             this.flag = newFlag;
+            this.setNaviBarHighlight(this.flag);
             switch (this.flag) {
                 case 0: this.jumpToIndex();
                 break;
@@ -110,7 +128,7 @@ var view = {
                 case 2: this.jumpToAbout();
                 break;
             }
-            this.setNaviBarHighlight(this.flag);
+            
         }
         
     },
