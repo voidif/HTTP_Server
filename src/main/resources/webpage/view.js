@@ -82,7 +82,7 @@ var view = {
 
     jumpToAbout: function() {
         alert("Not done yet!");
-        switchView(0);
+        this.switchView(0);
     },
 
 
