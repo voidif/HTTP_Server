@@ -16,9 +16,10 @@ public class StaticRequest {
 
     /**
      * write a specific file to client response according the URL.
-     * @param response The response that the file will write in.
+     * @param url url to a specific file
+     * @return message byte array
      */
-    public static void writeStaticFile(SocketChannel response, String url) throws IOException {
+    public static byte[] writeStaticFile(String url) throws IOException {
         byte[] data = fetchFile(url);
         String ext = getFileExtension(url);
         //make HTTP Head
@@ -45,12 +46,11 @@ public class StaticRequest {
 //        String message = head.append(new String(data)).toString();
 //        byte[] messageByte = message.getBytes();
 //        System.out.println(messageByte.length);
-//        byte[] headArray = head.toString().getBytes();
-//        byte[] message = new byte[headArray.length + data.length];
-//        System.arraycopy(headArray, 0, message, 0, headArray.length);
-//        System.arraycopy(data, 0, message, headArray.length, data.length);
-        HTTPLibrary.writeString(response, head.toString().getBytes());
-        HTTPLibrary.writeString(response, data);
+        byte[] headArray = head.toString().getBytes();
+        byte[] message = new byte[headArray.length + data.length];
+        System.arraycopy(headArray, 0, message, 0, headArray.length);
+        System.arraycopy(data, 0, message, headArray.length, data.length);
+        return message;
     }
 
     /**

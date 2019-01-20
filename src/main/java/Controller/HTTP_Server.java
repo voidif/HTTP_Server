@@ -11,10 +11,13 @@ import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
+import java.util.List;
 
 
 public class HTTP_Server {
@@ -35,6 +38,7 @@ public class HTTP_Server {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new MyDecode());
                             ch.pipeline().addLast(new MyServerHandler());
                         }
                     });
@@ -127,16 +131,47 @@ class MyServerHandler extends ChannelInboundHandlerAdapter  {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 //        super.channelRead(ctx, msg);
+
         ByteBuf buf = (ByteBuf) msg;
-        byte[] req = new byte[buf.readableBytes()];
-        String request = new String(req);
+        int len = buf.readableBytes();
+        byte[] req = new byte[len];
+        buf.readBytes(req);
 
-        String res = "HTTP/1.1 200 OK" + "\r\n" +
-                "Content-Type: application/json" + "\r\n" + "\r\n" +
-                "{\"test\":\"HelloWorld\"}";
+        System.out.println(new String(req));
+        System.out.println("done here");
 
-        HTTPLibrary.writeResponse(ctx, res.getBytes());
+//        String requestMsg = new String(req);
+//        Response response = new Response(ctx, requestMsg);
+//        ThreadPool.getInstance().executeTask(response);
+
     }
 
 
 }
+
+class MyDecode extends ByteToMessageDecoder {
+
+
+    @Override
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+        Object decoded = decode(ctx, in);
+        if (decoded != null) {
+            out.add(decoded);
+        }
+    }
+
+    /**
+     * Create a frame out of the {@link ByteBuf} and return it.
+     *
+     * @param   ctx             the {@link ChannelHandlerContext} which this {@link ByteToMessageDecoder} belongs to
+     * @param   buffer          the {@link ByteBuf} from which to read data
+     * @return  frame           the {@link ByteBuf} which represent the frame or {@code null} if no frame could
+     *                          be created.
+     */
+    protected Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception{
+        int len = buffer.readableBytes();
+        if(len < 4){
+
+    }
+}
+

@@ -101,7 +101,8 @@ var edit = {
             content: this.editor.getMarkdown(),
             file: this.fileName
         }
-        var msgText = JSON.stringify(msg);
+        //add json and ending sign
+        var msgText = JSON.stringify(msg) + "\r\n\r\n\r\n";
         xmlhttp.open("POST","/", true);
         xmlhttp.send(msgText);
 

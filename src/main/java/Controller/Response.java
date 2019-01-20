@@ -3,6 +3,7 @@ package Controller;
 import Controller.GetService.JSON.JSONRequestHelper;
 import Controller.GetService.StaticRequest;
 import Controller.PostService.BlogStorage;
+import io.netty.channel.ChannelHandlerContext;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -12,15 +13,13 @@ import java.nio.channels.SocketChannel;
 
 public class Response implements Runnable{
 
-
     private SocketChannel request;
-    private SocketChannel response;
-    private SelectionKey key;
+    private ChannelHandlerContext response;
+    private String requestString;
 
-    public Response(SocketChannel sc, SocketChannel out, SelectionKey key){
-        request = sc;
-        response = sc;
-        this.key = key;
+    public Response(ChannelHandlerContext response, String requestString){
+        this.requestString = requestString;
+        this.response = response;
     }
 
     public void run(){
@@ -32,6 +31,7 @@ public class Response implements Runnable{
      * @return Request message string
      * @throws IOException
      */
+    @Deprecated
     private String readRequest() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int len = request.read(buffer);
@@ -65,15 +65,15 @@ public class Response implements Runnable{
 
         try {
 
-            String message = readRequest();
-
-            //error message, return
-            if(message == null || message.length() == 0) {
-                return;
-            }
+//            String message = readRequest();
+//
+//            //error message, return
+//            if(message == null || message.length() == 0) {
+//                return;
+//            }
 
             //Get head and body
-            String[] paras = HTTPLibrary.getHeadAndBody(message);
+            String[] paras = HTTPLibrary.getHeadAndBody(requestString);
             String head = paras[0];
             String body = "";
             if(paras.length > 1) {
@@ -84,22 +84,24 @@ public class Response implements Runnable{
             String httpMethod = httpFirstLine[0];
             String url = httpFirstLine[1];
 
+            byte[] reponseMsg = null;
             //Looking HTTP method
             //current support: GET, POST
             if(httpMethod.equals("GET")) {
                 String[] getParas = HTTPLibrary.parseURL(url);
                 if(url.length() >= 6 && url.substring(0, 6).equals("/json?")){
                     //invoke JSON related method
-                    JSONRequestHelper.invokeMethod(response, getParas[1]);
+                    reponseMsg = JSONRequestHelper.invokeMethod(getParas[1]);
                 } else {
                     //Static File Method
-                    StaticRequest.writeStaticFile(response, getParas[0]);
+                    reponseMsg = StaticRequest.writeStaticFile(getParas[0]);
                 }
             } else {
                 //POST
-                BlogStorage.storage(response, url, body);
+                reponseMsg = BlogStorage.storage(url, body);
             }
-            response.close();
+
+            HTTPLibrary.writeResponse(response, reponseMsg);
         } catch (Exception e) {
             e.printStackTrace();
         }

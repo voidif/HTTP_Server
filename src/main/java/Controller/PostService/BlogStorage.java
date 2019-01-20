@@ -31,7 +31,7 @@ public class BlogStorage {
      * @param body POST method body message
      * @throws IOException
      */
-    public static void storage(SocketChannel response, String url, String body) throws IOException {
+    public static byte[] storage(String url, String body) throws IOException {
 //        var msg = {
 //                title: this.titleText.value,
 //                abstract: this.abstractText.value,
@@ -63,7 +63,7 @@ public class BlogStorage {
         responseMessage.put("file", paras.get("file"));
 
         String message = head + responseMessage.toString();
-        HTTPLibrary.writeString(response, message.getBytes());
+        return message.getBytes();
     }
 
     /**

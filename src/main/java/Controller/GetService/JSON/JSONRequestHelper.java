@@ -21,10 +21,9 @@ import java.nio.channels.SocketChannel;
 public class JSONRequestHelper {
     /**
      * Invoke corresponding method based on id
-     * @param response
      * @param para key-value pair parameter string
      */
-    public static void invokeMethod(SocketChannel response, String para) {
+    public static byte[] invokeMethod(String para) {
         JSONObject paras = HTTPLibrary.parseParams(para);
         String id = (String) paras.get("id");
 
@@ -35,26 +34,22 @@ public class JSONRequestHelper {
         JSONRequest jsonRequest = (JSONRequest)factory.getBean(id);
         //invoke method
         JSONObject result = jsonRequest.response(paras);
-        //write back to response
-        try {
-            writeJson(response, result);
-        } catch (IOException e) {
-            System.out.println("JSON method Fail!: " + id);
-            System.out.println(e.getMessage());
-        }
+        //return back response msg
+        return generatJson(result);
+
     }
 
     /**
      * Return a json object to client.
-     * @param response The response that the file will write in.
      * @param json The json to be returned.
+     * @return byte[] generated response message
      */
-    private static void writeJson(SocketChannel response, JSONObject json) throws IOException {
+    private static byte[] generatJson(JSONObject json) {
         String head = "HTTP/1.1 200 OK" + "\r\n" +
                 "Content-Type: application/json" + "\r\n" + "\r\n";
 
         String message = head.concat(json.toString());
-        HTTPLibrary.writeString(response, message.getBytes());
+        return message.getBytes();
     }
 }
 
