@@ -16,15 +16,19 @@ var edit = {
         this.abstract = abstract;
         //get edit html
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState == 4){
-                //update index value
-                var html = xmlhttp.responseText;
-                edit.dispaly(html);
-            }
-        }
-        xmlhttp.open("GET","/editormd/edit.html",true);
-        xmlhttp.send();
+        net.get("/editormd/edit.html", function (xmlhttp) {
+            var html = xmlhttp.responseText;
+            edit.dispaly(html);
+        })
+        // xmlhttp.onreadystatechange = function(){
+        //     if (xmlhttp.readyState == 4){
+        //         //update index value
+        //         var html = xmlhttp.responseText;
+        //         edit.dispaly(html);
+        //     }
+        // }
+        // xmlhttp.open("GET","/editormd/edit.html",true);
+        // xmlhttp.send();
     },
 
     dispaly: function(html) {
@@ -81,18 +85,7 @@ var edit = {
             alert("Title and abstract can not be empty!!!");
             return;
         }
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState == 4){
-                //update page dispaly
-                var text = xmlhttp.responseText;
-                var json = JSON.parse(text);
-                edit.fileName = json.file;
-                var msg = json.message;
-                alert(msg);
-                //this.fileName = text.file;
-            }
-        }
+
 
         //get post message
         var msg = {
@@ -101,10 +94,33 @@ var edit = {
             content: this.editor.getMarkdown(),
             file: this.fileName
         }
+
+        
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function(){
+        //     if (xmlhttp.readyState == 4){
+        //         //update page dispaly
+        //         var text = xmlhttp.responseText;
+        //         var json = JSON.parse(text);
+        //         edit.fileName = json.file;
+        //         var msg = json.message;
+        //         alert(msg);
+        //         //this.fileName = text.file;
+        //     }
+        // }
         //add json and ending sign
-        var msgText = JSON.stringify(msg) + "\r\n\r\n\r\n";
-        xmlhttp.open("POST","/", true);
-        xmlhttp.send(msgText);
+        var msgText = JSON.stringify(msg);
+        // xmlhttp.open("POST","/", true);
+        // xmlhttp.send(msgText);
+
+        net.post("/", msgText, function(xmlhttp) {
+            //update page dispaly
+            var text = xmlhttp.responseText;
+            var json = JSON.parse(text);
+            edit.fileName = json.file;
+            var msg = json.message;
+            alert(msg);
+        });
 
         // marked.setOptions({
         //     renderer: new marked.Renderer(),
