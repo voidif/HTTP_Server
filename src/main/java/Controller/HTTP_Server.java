@@ -4,19 +4,14 @@ import Model.DataBaseConnection;
 import Model.DatabaseConnectionPool;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
-import io.netty.buffer.EmptyByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.handler.codec.LineBasedFrameDecoder;
-import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 import java.util.List;
 
 
@@ -43,10 +38,9 @@ public class HTTP_Server {
                         }
                     });
             ChannelFuture future = bootstrap.bind().sync();
-            System.out.println("hehe");
             future.channel().closeFuture().sync();
             group.shutdownGracefully().sync();
-            System.out.println("haha");
+
 
             //NIO method
 //            Selector selector = Selector.open();
@@ -140,17 +134,21 @@ class MyServerHandler extends ChannelInboundHandlerAdapter  {
         System.out.println(new String(req));
         System.out.println("done here");
 
-//        String requestMsg = new String(req);
-//        Response response = new Response(ctx, requestMsg);
-//        ThreadPool.getInstance().executeTask(response);
+        String requestMsg = new String(req);
+        Response response = new Response(ctx, requestMsg);
+        ThreadPool.getInstance().executeTask(response);
 
     }
 
 
 }
 
+/**
+ *
+ */
 class MyDecode extends ByteToMessageDecoder {
-
+    private final String GET_DELIMITER = "\r\n\r\n";
+    private final String POST_DELIMITER = "\r\n\r\n\r\n";
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
@@ -169,9 +167,61 @@ class MyDecode extends ByteToMessageDecoder {
      *                          be created.
      */
     protected Object decode(ChannelHandlerContext ctx, ByteBuf buffer) throws Exception{
+
+
         int len = buffer.readableBytes();
         if(len < 4){
+            return null;
+        }
 
+        if(buffer.getByte(0) == 'G') {
+            ByteBuf delimiter = Unpooled.copiedBuffer(GET_DELIMITER.getBytes());
+            return decodeByDelimiter(buffer, delimiter);
+        } else if(buffer.getByte(0) == 'P') {
+            ByteBuf delimiter = Unpooled.copiedBuffer(POST_DELIMITER.getBytes());
+            return decodeByDelimiter(buffer, delimiter);
+        } else {
+            return null;
+        }
+    }
+
+    private Object decodeByDelimiter(ByteBuf buffer, ByteBuf delimiter) {
+        ByteBuf frame = null;
+        int frameLength = indexOf(buffer, delimiter);
+        if(frameLength > 0) {
+            frame = buffer.readRetainedSlice(frameLength);
+            buffer.skipBytes(delimiter.capacity());
+        }
+        return frame;
+    }
+
+    /**
+     * Returns the number of bytes between the readerIndex of the haystack and
+     * the first needle found in the haystack.  -1 is returned if no needle is
+     * found in the haystack.
+     */
+    private static int indexOf(ByteBuf haystack, ByteBuf needle) {
+        for (int i = haystack.readerIndex(); i < haystack.writerIndex(); i ++) {
+            int haystackIndex = i;
+            int needleIndex;
+            for (needleIndex = 0; needleIndex < needle.capacity(); needleIndex ++) {
+                if (haystack.getByte(haystackIndex) != needle.getByte(needleIndex)) {
+                    break;
+                } else {
+                    haystackIndex ++;
+                    if (haystackIndex == haystack.writerIndex() &&
+                            needleIndex != needle.capacity() - 1) {
+                        return -1;
+                    }
+                }
+            }
+
+            if (needleIndex == needle.capacity()) {
+                // Found the needle from the haystack!
+                return i - haystack.readerIndex();
+            }
+        }
+        return -1;
     }
 }
 
