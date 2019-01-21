@@ -3,6 +3,7 @@ package Controller;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.buffer.UnpooledHeapByteBuf;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import org.json.JSONObject;
 
@@ -120,21 +121,15 @@ public class HTTPLibrary {
      */
     public static void writeResponse(ChannelHandlerContext response, byte[] msg) {
 
-        try {
 //            int len = msg.length;
 
-            ByteBuf resp = Unpooled.copiedBuffer(msg);
+        ByteBuf resp = Unpooled.copiedBuffer(msg);
 //            resp.writerIndex();
 
-            response.writeAndFlush(resp).sync();
+        response.writeAndFlush(resp).addListener(ChannelFutureListener.CLOSE);
 //            System.out.println("hehe");
 
 
-        } catch (InterruptedException e) {
-            System.out.println("interupt!");
-        } finally {
-            response.close();
-        }
 
     }
 
