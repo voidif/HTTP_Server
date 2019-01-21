@@ -119,9 +119,13 @@ public class HTTPLibrary {
      */
     public static void writeResponse(ChannelHandlerContext response, byte[] msg) {
 
+        int len = msg.length;
+
         ByteBuf resp = Unpooled.copiedBuffer(msg);
-        response.write(resp);
-        response.flush();
+
+        response.writeAndFlush(resp);
+        System.out.println("hehe");
+
         response.close();
     }
 
