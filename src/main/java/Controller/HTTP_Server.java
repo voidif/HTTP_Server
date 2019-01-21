@@ -131,8 +131,8 @@ class MyServerHandler extends ChannelInboundHandlerAdapter  {
         byte[] req = new byte[len];
         buf.readBytes(req);
 
-        System.out.println(new String(req));
-        System.out.println("done here");
+//        System.out.println(new String(req));
+//        System.out.println("done here");
 
         String requestMsg = new String(req);
         Response response = new Response(ctx, requestMsg);
