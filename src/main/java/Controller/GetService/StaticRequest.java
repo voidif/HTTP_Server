@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.channels.SocketChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Dealing with static file get request
@@ -76,6 +77,7 @@ public class StaticRequest {
             return data;
         } catch (NullPointerException e) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");//设置日期格式
+            df.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
             System.out.print(df.format(new Date()));// new Date()为获取当前系统时间
             System.out.println("No such file: " + url);
             return new byte[0];
