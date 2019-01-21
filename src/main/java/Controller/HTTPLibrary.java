@@ -121,13 +121,13 @@ public class HTTPLibrary {
     public static void writeResponse(ChannelHandlerContext response, byte[] msg) {
 
         try {
-            int len = msg.length;
+//            int len = msg.length;
 
             ByteBuf resp = Unpooled.copiedBuffer(msg);
-            resp.writerIndex();
+//            resp.writerIndex();
 
             response.writeAndFlush(resp).sync();
-            System.out.println("hehe");
+//            System.out.println("hehe");
 
 
         } catch (InterruptedException e) {
