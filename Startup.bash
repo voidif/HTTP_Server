@@ -8,4 +8,4 @@ mvn exec:exec -Dexec.executable="java" -Dexec.args="-classpath %classpath -Xdebu
 
 #test
 cd D:\Softwares\Apache24\bin
-./ab -n 100 -c 10 http://yifu.click/
+./ab -n 500 -c 20 http://yifu.click/

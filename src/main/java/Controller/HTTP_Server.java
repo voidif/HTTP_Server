@@ -136,7 +136,9 @@ class MyServerHandler extends ChannelInboundHandlerAdapter  {
 
         String requestMsg = new String(req);
         Response response = new Response(ctx, requestMsg);
-        ThreadPool.getInstance().executeTask(response);
+
+        response.run();
+//        ThreadPool.getInstance().executeTask(response);
 
     }
 

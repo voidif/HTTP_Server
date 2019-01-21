@@ -18,7 +18,7 @@ class ThreadPool {
     }
 
     private static final int NTHREADS = 20;
-    private static final Executor exec = Executors.newScheduledThreadPool(NTHREADS);
+    private static final Executor exec = null;
 
     public void init() {
 
