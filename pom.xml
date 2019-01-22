@@ -45,6 +45,12 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.32.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
     </dependencies>
     <build>
