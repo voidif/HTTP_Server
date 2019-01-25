@@ -6,6 +6,7 @@ Using Connection pool to connect mysql database.</br>
 Using MarkDown to recorder my blog.</br>
 Using static HTML page and ajax to change display.</br>
 Using bootstrap for beatiuful design.</br>
+Using Netty to support high concurrency
 
 
 ### current support function in tool bar
