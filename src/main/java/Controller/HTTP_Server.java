@@ -10,6 +10,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import redis.clients.jedis.Jedis;
 
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -33,6 +34,7 @@ public class HTTP_Server {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            DataBaseConnection.storageIP(ch.remoteAddress());
                             ch.pipeline().addLast(new MyDecode());
                             ch.pipeline().addLast(new MyServerHandler());
                         }
@@ -86,6 +88,7 @@ public class HTTP_Server {
         DataBaseConnection.init();
     }
 
+
     /**
      * NIO method
      */
@@ -126,6 +129,7 @@ class MyServerHandler extends ChannelInboundHandlerAdapter  {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 //        super.channelRead(ctx, msg);
 
+
         ByteBuf buf = (ByteBuf) msg;
         int len = buf.readableBytes();
         byte[] req = new byte[len];
@@ -141,6 +145,8 @@ class MyServerHandler extends ChannelInboundHandlerAdapter  {
 //        ThreadPool.getInstance().executeTask(response);
 
     }
+
+
 
 
 }

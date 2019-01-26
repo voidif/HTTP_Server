@@ -17,16 +17,16 @@ public class DatabaseTest {
         Connection connection = DriverManager.getConnection(DB_URL,USER,PASS);
         System.out.println(connection.getAutoCommit());
 
-        DatabaseMetaData metaData = connection.getMetaData();
-        int driverMaxConnections = metaData.getMaxConnections();
-
-
-        //STEP 3: Execute a query
-        for (int i = 0; i < 10; i ++){
-            Statement statement = connection.createStatement();
-            statement.execute("SELECT * FROM test");
-        }
-        Thread.yield();
+//        DatabaseMetaData metaData = connection.getMetaData();
+//        int driverMaxConnections = metaData.getMaxConnections();
+//
+//
+//        //STEP 3: Execute a query
+//        for (int i = 0; i < 10; i ++){
+//            Statement statement = connection.createStatement();
+//            statement.execute("SELECT * FROM test");
+//        }
+//        Thread.yield();
     }
 }
 

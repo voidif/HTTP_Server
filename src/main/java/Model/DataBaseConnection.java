@@ -1,5 +1,8 @@
 package Model;
 
+import redis.clients.jedis.Jedis;
+
+import java.net.InetSocketAddress;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +20,7 @@ public class DataBaseConnection {
 //    private static Connection connection = null;
 //    private static Statement statement = null;
     private static DatabaseConnectionPool pool = null;
+    private static String Redis_URL = "localhost";
 
     /**
      * Initialize database setting for a specific thread
@@ -97,4 +101,23 @@ public class DataBaseConnection {
             System.out.println("Update Fail!!");
         }
     }
+
+    /**
+     * Storage accept ip to redis database
+     * @param address Redis database Address
+     */
+    public static void storageIP(InetSocketAddress address) {
+        Jedis jedis = new Jedis(Redis_URL);
+        String ip = address.getAddress().getHostAddress();
+
+        String countNum = jedis.get(ip);
+        int count = 0;
+        if(countNum != null) {
+            count = Integer.parseInt(countNum);
+        }
+        count ++;
+
+        jedis.set(ip, String.valueOf(count));
+    }
+
 }
