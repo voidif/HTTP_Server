@@ -22,11 +22,11 @@ public class HTTP_Server {
         init();
         //ServerSocket serverSocket = null;
         NioEventLoopGroup group = new NioEventLoopGroup();
-//        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(group)
+            bootstrap.group(group, workerGroup)
                     .localAddress(new InetSocketAddress(80))
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
@@ -34,7 +34,7 @@ public class HTTP_Server {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            System.out.println(ch.remoteAddress());
+//                            System.out.println(ch.remoteAddress());
                             DataBaseConnection.storageIP(ch.remoteAddress());
                             ch.pipeline().addLast(new MyDecode());
                             ch.pipeline().addLast(new MyServerHandler());
