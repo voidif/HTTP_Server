@@ -34,6 +34,7 @@ public class HTTP_Server {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            System.out.println(ch.remoteAddress());
                             DataBaseConnection.storageIP(ch.remoteAddress());
                             ch.pipeline().addLast(new MyDecode());
                             ch.pipeline().addLast(new MyServerHandler());

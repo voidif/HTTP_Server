@@ -107,17 +107,21 @@ public class DataBaseConnection {
      * @param address Redis database Address
      */
     public static void storageIP(InetSocketAddress address) {
+
         Jedis jedis = new Jedis(Redis_URL);
-        String ip = address.getAddress().getHostAddress();
+        if (jedis.isConnected()) {
+            String ip = address.getAddress().getHostAddress();
 
-        String countNum = jedis.get(ip);
-        int count = 0;
-        if(countNum != null) {
-            count = Integer.parseInt(countNum);
+            String countNum = jedis.get(ip);
+            int count = 0;
+            if(countNum != null) {
+                count = Integer.parseInt(countNum);
+            }
+            count ++;
+
+            jedis.set(ip, String.valueOf(count));
         }
-        count ++;
 
-        jedis.set(ip, String.valueOf(count));
     }
 
 }
