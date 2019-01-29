@@ -14,4 +14,3 @@ Using Netty to support high concurrency
 *Query USD to RMB exchange rate
 
 Using database to storage rate, update every ten minutes. using connetion pool to connect to database
-
