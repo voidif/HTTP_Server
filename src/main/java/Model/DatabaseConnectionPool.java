@@ -219,8 +219,6 @@ class pooledConnection{
             //close connection
             closeConnection();
             return false;
-        } catch(CommunicationsException e) {
-
         }
         return true;
     }
