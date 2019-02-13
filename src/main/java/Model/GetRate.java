@@ -7,8 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GetRate {
+    private static String API_KEY = "1fc497b26127f4a176d8";
+
     public static float getUSD_CNY() throws Exception{
-        URL url = new URL("http://free.currencyconverterapi.com/api/v5/convert?q=USD_CNY&compact=y");
+        URL url = new URL("http://free.currencyconverterapi.com/api/v5/convert?q=USD_CNY&compact=y&apiKey=" + API_KEY);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setConnectTimeout(5000);
         conn.setRequestMethod("GET");
