@@ -1,5 +1,6 @@
 # HTTP_Server
 Java based HTTP Server. You can click [Here!](http://yifu.click) to see my site!
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
 Using Socket to implement a backend HTTP server.</br>
 Using Connection pool to connect mysql database.</br>
